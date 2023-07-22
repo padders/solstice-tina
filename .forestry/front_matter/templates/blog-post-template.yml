@@ -1,0 +1,134 @@
+---
+label: Blog Post Template
+hide_body: false
+fields:
+- type: datetime
+  name: date
+  label: date
+- type: text
+  name: author
+  label: author
+- type: file
+  name: image
+  label: image
+- name: title
+  type: text
+  config:
+    required: true
+  label: Title
+  description: Page Title
+- name: meta_description
+  type: text
+  config:
+    required: false
+  label: Meta Description
+  description: Meta Description
+- name: meta_og_image
+  type: file
+  config:
+    required: true
+  label: Meta OG Image
+  description: Meta OG Image - just link the blog main image again
+- name: alt_text
+  type: text
+  label: Blog Image Alt Text
+  description: Blog Image Alt Tag - Not required - the Page title will be used as
+    the alt tag if this isn't filled in. If you need a different alt tag then add
+    this
+- name: music
+  type: field_group_list
+  fields:
+  - name: type
+    type: select
+    default: spotify album
+    config:
+      required: true
+      options:
+      - soundcloud playlist
+      - soundcloud track
+      - spotify album
+      - spotify track
+      - bandcamp album
+      - bandcamp track
+      source:
+        type: simple
+        section: 
+        file: 
+        path: 
+    label: type
+    description: Choose if this embed is a playlist or just a single track
+  - name: embed_code
+    type: text
+    config:
+      required: false
+    label: Embed Code
+    description: <strong>For Soundcloud - </strong><br>Select <strong>'share'</strong>
+      under the song/playlist, go to the <strong>embed tab</strong>, and copy the
+      embed code into a text editor. Look for the section similar to the following
+      and copy the ID highlighted in bold<br>src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/<strong>1118503207</strong>&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true"<br>
+      <strong>For Spotify - </strong><br>Select the three dots under a song/album,
+      then share, then 'copy spotify URI' and copy this into a text editor. Look for
+      the highlighted ID similar to the following<br> spotify:album:<strong>7ndyqoyQhar0ckM867PHwf</strong>
+      <strong>For Bandcamp - </strong><br>Select <strong>'Share / Embed'</strong>
+      under the album artwork, select 'embed this album', choose any style and copy
+      the embed code into a text editor. Look for the section similar to the following
+      and copy the ID highlighted in bold<br> src="https://bandcamp.com/EmbeddedPlayer/album=<strong>3541056107</strong/size=large/bgcol=333333/linkcol=0f91ff/artwork=small/transparent=true/"
+  config:
+    min: 
+    max: 
+    labelField: 
+  description: Add the relevant embed id for the type you select
+  label: Embedded Music
+- name: watch
+  type: field_group_list
+  fields:
+  - name: type
+    type: select
+    default: youtube video
+    config:
+      required: true
+      options:
+      - youtube video
+      - youtube playlist
+      - vimeo video
+      source:
+        type: simple
+        section: 
+        file: 
+        path: 
+    label: type
+    description: Choose the video embed source
+  - name: embed_code
+    type: text
+    config:
+      required: false
+    label: Embed Code
+    description: <strong>For Youtube - </strong><br>Select <strong>'share'</strong>
+      under the video and copy the embed code into a text editor. Look for the section
+      similar to the following and copy the ID highlighted in bold<br>src="https://www.youtube-nocookie.com/embed/<strong>tNo43ZKbCjA</strong>"<br>
+      <strong>For a Youtube Playlist - </strong><br>copy the url into a text editor.
+      Look for the section similar to the following and copy the ID highlighted in
+      bold<br>https://www.youtube.com/watch?v=3e3UueDTB6w&list=<strong>PLf1pwso2W5-H_MlkF1SpwZNEkRbyyv_4V</strong><br>
+      <strong>For Vimeo - </strong><br>Select <strong>'share'</strong> under the video
+      and copy the link code into a text editor. Look for the section similar to the
+      following and copy the ID highlighted in bold<br>https://vimeo.com/<strong>178823364</strong>"
+  config:
+    min: 
+    max: 
+    labelField: 
+  description: Add the relevant embed id for the type you select
+  label: Embedded Video
+- name: musicTop
+  type: boolean
+  label: Add Music/Video to top or bottom?
+  description: Turn this on to shift any embedded music or video links to the bottom
+    of the content instead of the top
+- name: hideImage
+  type: boolean
+  label: Hide Main Image on blog post?
+  description: Hides the main blog image on the blog post, useful if you want to add
+    embedded video/music to the top
+pages:
+- content/blog/album-launch-gig-at-pizza-express-tues-28th-sept.md
+- content/blog/jazz-views-reviews-food-for-thought.md
+- content/blog/new-live-video-close-to-home.md

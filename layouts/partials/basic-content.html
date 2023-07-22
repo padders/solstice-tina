@@ -1,0 +1,23 @@
+{{"<!-- Basic -->" | safeHTML }}
+<section class="section bg-white text-dark{{ if .Params.remove_padding_top }} pt-1{{ end}}{{ if .Params.remove_padding_bottom }} pb-1{{ end}}">
+    <div class="container">
+        {{ with .Params.title }}
+        <div class="row">
+            {{"<!-- section title -->" | safeHTML }}
+            <div class="col-md-12">
+                <div class="title text-center">
+                    <h2>{{ . }}</h2>
+                    <div class="border"></div>
+                </div>
+            </div>
+            {{"<!-- /section title -->" | safeHTML }}
+        </div>
+        {{ end }}
+        <div class="row">
+            <div class="col-md-12">
+                <div class="basic-content {{ if .Params.add_image }}p-text-4{{ end }}{{ if .Params.large_paragraph_text }} large-para{{ end}}">{{ if .Params.add_image }}<img class="img-50 {{ if .Params.image_side }}float-left{{ else }}float-right{{ end }}" src="{{ .Params.floating_image | absURL}}" alt="image">{{ end }}{{ .Params.content | markdownify }}</div>
+            </div>
+        </div>
+    </div>
+</section>
+{{"<!-- /Basic -->" | safeHTML }}

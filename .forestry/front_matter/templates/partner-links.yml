@@ -1,0 +1,28 @@
+---
+label: Partner Links
+hide_body: true
+fields:
+- name: section_id
+  type: text
+  config:
+    required: false
+  label: Section ID
+  default: partners
+- name: partners
+  type: field_group_list
+  fields:
+  - name: url
+    type: text
+    config:
+      required: false
+    label: url
+  - name: image
+    type: file
+    config:
+      maxSize: 64
+    label: Image
+  config:
+    min: 
+    max: 
+    labelField: 
+  label: Partners

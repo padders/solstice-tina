@@ -1,0 +1,48 @@
+<section class="section bg-dark-brown portfolio-gallery">         
+        <div class="container">
+        
+      <div class="contentblock">
+          
+        <div class="row">
+
+                {{"<!-- section title -->" | safeHTML }}
+                <div class="title text-center wow fadeIn" data-wow-duration="500ms">
+                    <h2>Our Gallery</h2>
+                    <div class="border"></div>
+                </div>
+          <div class="col-lg-12 bottom-margin-30">
+            
+            <div class="">
+
+              
+                    {{ range .Params.gallery }}
+                  
+                        <div class="col-xs-6">
+                          
+                          <img class="img-fluid mb-50" src="{{ . | relURL }}" alt="blog-image">
+                        </div>
+                        
+                   {{ end }}
+              </div>
+            </div>
+          </div>
+          <div class="col-xs-12 bottom-margin-30 visible-xs">
+            <hr>
+          </div>
+        
+      
+        <div class="row">
+            <hr>
+          {{ if .PrevInSection }}
+          <div class="col-xs-12 col-sm-6"><a class="arrow-left" href="{{.PrevInSection.Permalink}}">View previous</a></div>
+          {{ end }}
+          {{ if .NextInSection }}
+          <div class="col-xs-12 col-sm-6 text-right"><a class="arrow-right" href="{{.NextInSection.Permalink}}">View next</a></div>
+          {{ end }}
+
+
+         
+        </div>
+      </div>
+    </div>
+      </section>

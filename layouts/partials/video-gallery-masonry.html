@@ -1,0 +1,74 @@
+<section class="section bg-white portfolio-gallery" id="videogallery">         
+    <div class="container">
+         
+        <div class="contentblock">
+              
+            <div class="row">
+
+                {{"<!-- section title -->" | safeHTML }}
+                <div class="title text-center wow fadeIn" data-wow-duration="500ms">
+                    <h2>Videos</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="gallery-filter">
+                            <button type="button" class="video-gallery-filter-button" data-filter=".video-grid-item">All</button>
+                            {{ range .Params.tags }}
+                                <button type="button" class="video-gallery-filter-button" data-filter=".{{ . }}">{{ replace . "_" " " }}</button>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-margin-30">
+                
+                    <div class="video-grid">
+                        <div class="video-grid-sizer" id="videoGalleryMasonry"></div>
+                        {{ $counter := 1 }}
+                        {{ range $index, $element := .Params.video_section }}
+                            <div class="video-grid-item {{ range .tags }} {{ . }}{{end}} {{ if gt $counter $.Params.display_limit }} nodisplay{{ end }}">
+                                <div class="wrapper">
+                                    <div class="inner" id="video{{$index}}">
+                                        {{ if eq .type "youtube video" }}
+                                        <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+                                        <div class='embed-container'>
+                                            <iframe src='https://www.youtube-nocookie.com/embed/{{ .embed_code }}' frameborder='0' allowfullscreen></iframe>
+                                        </div>
+                                        {{ else if eq .type "youtube playlist" }}
+                                        <style>.embed-container { position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; max-width: 100%; } .embed-container iframe, .embed-container object, .embed-container embed { position: absolute; top: 0; left: 0; width: 100%; height: 100%; }</style>
+                                        <div class='embed-container'>
+                                            <iframe src='https://www.youtube-nocookie.com/embed/videoseries?list={{ .embed_code }}' frameborder='0' allowfullscreen></iframe>
+                                        </div>
+                                        {{ else if eq .type "vimeo video" }}
+                                        <div style="padding:56.25% 0 0 0;position:relative;">
+                                            <iframe 
+                                                src="https://player.vimeo.com/video/{{ .embed_code }}" 
+                                                style="position:absolute;top:0;left:0;width:100%;height:100%;" 
+                                                frameborder="0" 
+                                                allow="autoplay; fullscreen" 
+                                                allowfullscreen>
+                                            </iframe>
+                                        </div><script src="https://player.vimeo.com/api/player.js"></script>
+                                        {{ end }}
+                                    </div>
+                                </div>
+                            </div>
+                            {{ $counter = add $counter 1 }}           
+					   {{ end }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 bottom-margin-30 visible-xs">
+                <hr>
+            </div>
+            {{ if gt $counter $.Params.display_limit }}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="gallery-filter">
+                        <button type="button" class="video-gallery-filter-button hide_on_click" data-filter=".video-grid-item">Show All</button>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>

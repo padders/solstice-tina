@@ -1,0 +1,56 @@
+{{ define "main" }}
+
+{{ partial "header.html" . }}
+
+{{ partial "navigation.html" . }}
+
+<section class="portfolio section" id="portfolio">
+        <div class="container">
+
+<div class="row">
+        <div class="col-md-12">
+            <div class="portfolio-filter">
+                <button type="button" data-filter="all">All</button>
+               
+                {{ range $key, $value := $.Site.Taxonomies}}
+                    {{ range $key2, $value2 := $value }}
+                        
+                        <button type="button" data-filter=".{{$key2}}">{{$key2}}</button>
+                    {{ end }}
+                {{ end }}
+               
+                
+         
+            </div>
+        </div>
+    </div>
+  
+
+    
+    <div class="row portfolio-items-wrapper">
+        {{"<!-- portfolio item -->" | safeHTML}}
+        {{ range where .Data.Pages  "Section" "portfolio" }}
+       
+    {{if .Params.title }}
+   
+        <div class="mix col-md-4{{ range .Params.categories }} {{ . | urlize}}{{end}}">
+            <div class="portfolio-block">
+                <img class="img-responsive" src="{{ .Params.list_image | absURL}}" alt="work-image">
+                <div class="caption">
+
+                    <a class="search-icon" href="{{ .URL | absURL }}"
+                       >
+                        <i class="tf-ion-android-search"></i>
+                    </a>
+                    <h4><a href="{{ .URL | absURL }}">{{ .Params.title }}</a></h4>
+                    <p>{{ .Content }}</p>
+                </div>
+            </div>
+        </div>
+        {{ end }}
+        {{ end }}
+    </div>
+</div>
+</div>
+</section>
+{{ end }}

@@ -1,0 +1,53 @@
+<div id="music" class="bg-white{{ if not .musicTop }} mb-4{{ else }} mt-4{{ end }}">
+    {{ with .title }}<h3 class="mb-4">{{ . }}</h3>{{ end }}
+    <ol class="music"></ol>
+        {{ range .music }}
+            {{ if eq .type "soundcloud playlist" }}
+                <iframe 
+                    width="100%"
+                    height="450"
+                    scrolling="no"
+                    frameborder="no"
+                    allow="autoplay"
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/{{ .embed_code }}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"
+                ></iframe>
+            {{ else if eq .type "soundcloud track" }}
+                <iframe 
+                    width="100%" 
+                    height="166" 
+                    scrolling="no" 
+                    frameborder="no" 
+                    allow="autoplay" 
+                    src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/{{ .embed_code }}&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true"></iframe>
+            {{ else if eq .type "spotify album" }}
+                <iframe 
+                    src="https://open.spotify.com/embed/album/{{ .embed_code }}" 
+                    width="100%" 
+                    height="380" 
+                    frameborder="0" 
+                    allowtransparency="true" 
+                    allow="encrypted-media">
+                </iframe>
+            {{ else if eq .type "spotify track" }}
+                <iframe 
+                    src="https://open.spotify.com/embed/track/{{ .embed_code }}" 
+                    width="100%" 
+                    height="80" 
+                    frameborder="0"
+                    allowtransparency="true" 
+                    allow="encrypted-media">
+                </iframe>
+            {{ else if eq .type "bandcamp album" }}
+                <iframe 
+                    style="border: 0; width: 100%; height: 439px;" 
+                    src="https://bandcamp.com/EmbeddedPlayer/album={{ .embed_code }}/size=large/bgcol=333333/linkcol=0f91ff/artwork=small/transparent=true/" seamless>
+                </iframe>
+            {{ else if eq .type "bandcamp track" }}
+                <iframe 
+                    style="border: 0; width: 100%; height: 120px;" 
+                    src="https://bandcamp.com/EmbeddedPlayer/track={{ .embed_code }}/size=large/bgcol=333333/linkcol=0f91ff/artwork=small/transparent=true/" seamless>
+                </iframe>
+            {{ end }}
+        {{ end }}
+    </ol>
+</div>

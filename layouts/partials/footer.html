@@ -1,0 +1,196 @@
+{{"<!-- end Contact Area -->" | safeHTML}}
+<footer id="footer" class="bg-black">
+        {{ partial "footer-links.html" . }}
+</footer>
+
+{{"<!-- /footer -->" | safeHTML}}
+
+{{"<!-- Essential Scripts -->" | safeHTML}}
+
+{{ $jsjquery := resources.Get "plugins/jquery/dist/jquery.min.js" }}
+{{ $bootstrap := resources.Get "plugins/bootstrap/dist/js/bootstrap.min.js" }}
+{{ $jssmoothscrol := resources.Get "plugins/smooth-scroll/dist/js/smooth-scroll.min.js" }}
+{{ $jswow := resources.Get "plugins/wow/dist/wow.min.js" }}
+{{ $jsgeneral := resources.Get "js/script.js" }}
+{{ $jsValidate := resources.Get  "plugins/validate/jquery.validate.min.js" }}
+{{ $jsUI := resources.Get  "plugins/jquery-ui-1.12.1.custom/jquery-ui.min.js" }}
+{{ $vanillaToTop := resources.Get  "plugins/vanilla-to-top/vanilla-back-to-top.min.js" }}
+{{ $masonry := resources.Get  "plugins/masonry/dist/masonry.pkgd.min.js" }}
+{{ $masonryLazyLoad := resources.Get  "plugins/masonry/dist/imagesloaded.pkgd.min.js" }}
+{{ $lazyLoad := resources.Get  "plugins/lozad/lozad.min.js" }}
+{{ $fancybox := resources.Get  "plugins/fancybox/jquery.fancybox.min.js" }}
+
+{{ $pluginJS := slice $jsjquery $bootstrap $jssmoothscrol $jswow $jsValidate $jsUI $lazyLoad $jsgeneral | resources.Concat "assets/js/plugins.js" |  minify }}
+{{ $defaultJS := slice $vanillaToTop $masonry $masonryLazyLoad $fancybox | resources.Concat "assets/js/global.js"   }}
+
+<script type="text/javascript">
+if (!('IntersectionObserver' in window)) {
+    var script = document.createElement("script");
+    script.src = "https://raw.githubusercontent.com/w3c/IntersectionObserver/master/polyfill/intersection-observer.js";
+    document.getElementsByTagName('head')[0].appendChild(script);
+}
+</script>
+
+<script src="{{ $pluginJS.Permalink }}"></script>
+
+<script>
+//First Let's load the CSS
+ var DOMReady = function(a,b,c){b=document,c='addEventListener';b[c]?b[c]('DOMContentLoaded',a):window.attachEvent('onload',a)}
+ DOMReady(function () {
+		console.log('Doc Ready');
+		//$(".load-the-css").attr("media","all");
+
+});
+	
+	addEventListener("load", function(){
+		
+	  	$.getScript('{{ $defaultJS.Permalink }}', function() {
+				
+            "use strict";
+            $('body').addClass("loaded");
+            //RMPageFunctions();
+            console.log('{{ $defaultJS.Permalink }}');
+            console.log('Now running Inits()');
+            addBackToTop({
+                diameter: 56,
+                backgroundColor: 'rgba(255, 255, 255, 0.3)',
+                innerHTML: '<svg viewBox="0 0 24 24"><path d="M4 12l1.41 1.41L11 7.83V20h2V7.83l5.58 5.59L20 12l-8-8-8 8z"/></svg>',
+                textColor: '#000'
+            });
+            
+            // lazy loads elements with default selector as '.lozad'
+            const observer = lozad('.lozad', {
+                rootMargin: '1500px 0px', // syntax similar to that of CSS Margin
+                threshold: 0, // ratio of element convergence
+                // refresh masonry when image is loaded
+                loaded: function(el) {
+                    if (typeof $msnry === 'undefined') {
+                        $('.grid').imagesLoaded( { background: true }, function() {
+                            var $msnry = $('.grid').masonry({
+                                itemSelector: '.grid-item',
+                                columnWidth: '.grid-sizer',
+                                percentPosition: true
+                            });
+                            //setup gallery filter 
+                            $('.gallery-filter-button').click(function() {
+                                var filterName = $(this).data('filter');      
+                                // toggle all elements with this class
+                                $(".grid-item").addClass("nodisplay");
+                                $(filterName).removeClass("nodisplay");
+                                // set this button to active
+                                $('.gallery-filter-button').removeClass("active");
+                                $(this).addClass("active");
+                                $msnry.masonry('layout');
+                            });
+                            $('.hide_on_click').click(function() {
+                                $(this).addClass("nodisplay");
+                            });
+                        });
+                        
+                    } else {
+                        $msnry.masonry('layout');
+                    }
+                    el.classList.add('loaded'); // shows normal images
+                    // now show masonry images 
+                    $('.loaded').closest(".grid-item").fadeTo( 800 , 1, function() {
+                        // Animation complete.
+                        if (typeof $msnry === 'undefined') {
+                            $('.grid').imagesLoaded( { background: true }, function() {
+                                var $msnry = $('.grid').masonry({
+                                    itemSelector: '.grid-item',
+                                    columnWidth: '.grid-sizer',
+                                    percentPosition: true
+                                });
+                            });
+                        } else {
+                            $msnry.masonry('layout');
+                        }
+                    });
+                }
+            });
+            observer.observe();
+
+            //load video grid masonry
+            if (typeof $vidmsnry === 'undefined') {
+                var $vidmsnry = $('.video-grid').masonry({
+                    itemSelector: '.video-grid-item',
+                    columnWidth: '.video-grid-sizer',
+                    percentPosition: true
+                });
+                // setup video gallery filter
+                $('.video-gallery-filter-button').click(function() {
+                    var filterName = $(this).data('filter');      
+                    // toggle all elements with this class
+                    $(".video-grid-item").addClass("nodisplay");
+                    $(filterName).removeClass("nodisplay");
+                    // set this button to active
+                    $('.video-gallery-filter-button').removeClass("active");
+                    $(this).addClass("active");
+                    $vidmsnry.masonry('layout');
+                });
+                $('.hide_on_click').click(function() {
+                    $(this).addClass("nodisplay");
+                });
+
+                
+            } else {
+                $vidmsnry.masonry('layout');
+            }
+            // now show masonry images 
+            $(".video-grid-item").fadeTo( 800 , 1, function() {
+                // Animation complete.
+                if (typeof $vidmsnry === 'undefined') {
+                    var $vidmsnry = $('.video-grid').masonry({
+                        itemSelector: '.video-grid-item',
+                        columnWidth: '.video-grid-sizer',
+                        percentPosition: true
+                    });
+                } else {
+                    $vidmsnry.masonry('layout');
+                }
+            });
+
+            // page or tab focus can cause masonry and lazyload to stop and prevents masonry from rearranging once images have loaded
+            // this can detect page focus and activate the masonry reload on focus
+            // Set the name of the hidden property and the change event for visibility
+            var hidden, visibilityChange; 
+            if (typeof document.hidden !== "undefined") { // Opera 12.10 and Firefox 18 and later support 
+                hidden = "hidden";
+                visibilityChange = "visibilitychange";
+            } else if (typeof document.msHidden !== "undefined") {
+                hidden = "msHidden";
+                visibilityChange = "msvisibilitychange";
+            } else if (typeof document.webkitHidden !== "undefined") {
+                hidden = "webkitHidden";
+                visibilityChange = "webkitvisibilitychange";
+            }
+            // If the page is hidden, pause the video;
+            // if the page is shown, play the video
+            function handleVisibilityChange() {
+                if (document[hidden]) {
+                } else {
+                    if (typeof $msnry === 'undefined') {
+                        $('.grid').imagesLoaded( { background: true }, function() {
+                            var $msnry = $('.grid').masonry({
+                                itemSelector: '.grid-item',
+                                columnWidth: '.grid-sizer',
+                                percentPosition: true
+                            });
+                        });
+                    } else {
+                        $msnry.masonry('layout');
+                    }
+                }
+            }
+
+            // Warn if the browser doesn't support addEventListener or the Page Visibility API
+            if (typeof document.addEventListener === "undefined" || hidden === undefined) {
+                console.log("This requires a browser, such as Google Chrome or Firefox, that supports the Page Visibility API.");
+            } else {
+                // Handle page visibility change   
+                document.addEventListener(visibilityChange, handleVisibilityChange, false);
+            }
+		})							
+	})
+</script>
+

@@ -1,0 +1,59 @@
+<section class="section bg-white portfolio-gallery" id="gallery">         
+    <div class="container">
+         
+        <div class="contentblock">
+              
+            <div class="row">
+
+                {{"<!-- section title -->" | safeHTML }}
+                <div class="title text-center wow fadeIn" data-wow-duration="500ms">
+                    <h2>Gallery</h2>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="gallery-filter">
+                            <button type="button" class="gallery-filter-button" data-filter=".grid-item">All</button>
+                            {{ range .Params.tags }}
+                                <button type="button" class="gallery-filter-button" data-filter=".{{ . }}">{{ replace . "_" " " }}</button>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+                <div class="bottom-margin-30">
+                
+                    <div class="grid">
+                        <div class="grid-sizer" id="galleryMasonry"></div>
+                        {{ $counter := 1 }}
+                        {{ range $index, $element := .Params.image_section }}
+                            <div class="grid-item {{ range .tags }} {{ . }}{{end}} {{ if gt $counter $.Params.display_limit }} nodisplay{{ end }}">
+                                <div class="wrapper">
+                                    <div class="inner" id="image{{$index}}">
+                                        {{ if .alt_text }}
+                                            {{ partial "image-srcset.html" (dict "src" .image_file "alt" .alt_text "class" "" "sizes" (slice 768 355 465 565) "ident" (print "#image" $index) "Main" $.Main "fancybox" "true") }}
+                                        {{ else }}
+                                            {{ partial "image-srcset.html" (dict "src" .image_file "alt" .image_description "class" "" "sizes" (slice 768 355 465 565) "ident" (print "#image" $index) "Main" $.Main "fancybox" "true") }}
+                                        {{ end }}
+                                    </div>
+                                </div>
+                                <p class="image-caption">{{ .image_description }}</p>
+                            </div>
+                            {{ $counter = add $counter 1 }}           
+					   {{ end }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-xs-12 bottom-margin-30 visible-xs">
+                <hr>
+            </div>
+            {{ if gt $counter $.Params.display_limit }}
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="gallery-filter">
+                        <button type="button" class="gallery-filter-button hide_on_click" data-filter=".grid-item">Show All</button>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>

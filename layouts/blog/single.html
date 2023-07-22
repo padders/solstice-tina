@@ -1,0 +1,74 @@
+{{ define "main" }}
+
+{{ partial "header.html" . }}
+
+{{ partial "navigation.html" . }}
+
+<section class="section blogpage bg-white">
+    <script type="application/ld+json">
+        {
+            "@context": "https://schema.org",
+            "@type": "NewsArticle",
+            "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{{ .Permalink | absURL }}"
+            },
+            "headline": "{{ .Title }}e",
+            "image": [
+            "{{ .Params.image | absURL }}"
+            ],
+            "datePublished": "{{ dateFormat "Monday, Jan 2, 2006" .Date }}",
+            "dateModified": "{{ dateFormat "Monday, Jan 2, 2006" .Date }}",
+            "author": {
+            "@type": "Person",
+            "name": "{{ .Params.author }}"
+            },
+            "publisher": {
+            "@type": "Organization",
+            "name": "{{ .Site.Data.settings.params.site_author.siteauthor }}",
+            "logo": {
+                "@type": "ImageObject",
+                "url": "{{ .Site.Params.logo | absURL }}"
+            }
+            },
+            "description": "{{ .Summary }}"
+        }
+    </script>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center">
+                <h1>{{ .Title }}</h1>
+                <ul class="list-inline mb-50 color-grey">
+                    <li class="list-inline-item">{{ .Params.author }}</li>
+                    <li class="list-inline-item">{{ dateFormat "Monday, Jan 2, 2006" .Date }}</li>
+                </ul>
+                {{ if not .Params.hideImage }}
+                    <img class="img-fluid mb-50" src="{{ .Params.image | absURL }}" alt="{{ if .Params.alt_text }}{{ .Params.alt_text }}{{ else }}{{ .Title }}{{ end }}">
+                {{ end }}
+            </div>
+            <div class="col-md-8 col-md-offset-2">
+                {{ if not .Params.musicTop }}
+                    {{ if .Params.music }}
+                        {{ partial "embedded-music.html" (dict "music" .Params.music "musicTop" .Params.musicTop) }}
+                    {{ end }}
+                    {{ if .Params.watch }}
+                        {{ partial "embedded-video.html" (dict "watch" .Params.watch "musicTop" .Params.musicTop) }}
+                    {{ end }}
+                {{ end }}
+                <div class="post-single-content">
+                    {{ emojify .Content }}
+                </div>
+                {{ if .Params.musicTop }}
+                    {{ if .Params.music }}
+                        {{ partial "embedded-music.html" (dict "music" .Params.music "musicTop" .Params.musicTop) }}
+                    {{ end }}
+                    {{ if .Params.watch }}
+                        {{ partial "embedded-video.html" (dict "watch" .Params.watch "musicTop" .Params.musicTop) }}
+                    {{ end }}
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+
+{{ end }}

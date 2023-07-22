@@ -1,0 +1,44 @@
+---
+label: Workshop
+hide_body: false
+fields:
+- type: text
+  label: Workshop ID
+  name: workshop_id
+  description: ID for HTML Linking
+  default: Education_Workshops
+- type: text
+  label: Workshop Heading
+  name: workshop_heading
+  description: Workshop Heading
+  default: Education Workshops
+- type: textarea
+  label: Workshop Main Content
+  name: workshop_content
+  description: Workshop Main Content
+  default: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, nihil,
+    libero, perspiciatis eos provident laborum eum dignissimos.
+  config:
+    wysiwyg: true
+    schema:
+      format: markdown
+- type: boolean
+  name: display_workshop_button
+  label: Add a button to the image?
+  description: Add a button link to the image?
+  default: false
+- type: text
+  label: Workshop Button Text
+  name: workshop_button_text
+  description: Workshop Button Text
+  default: Book Education Workshop
+- type: text
+  label: Workshop Button URL
+  name: workshop_button_url
+  description: Workshop Button URL
+  default: 
+- type: file
+  label: Workshop Image
+  description: Recommended Resolution 1900 × 1000
+  name: image_source
+  default: ''

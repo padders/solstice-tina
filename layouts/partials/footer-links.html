@@ -1,0 +1,42 @@
+<div class="container">
+		<div class="row wow fadeInUp" data-wow-duration="500ms">
+			<div class="col-lg-12">
+
+				{{"<!-- Footer Social Links -->" | safeHTML}}
+				<div class="row">
+					{{ with .Site.Data.sitedata.footer.Spotify_Uri }}
+					<div class="col-md-6 text-center pt-4 pb-4">
+						<iframe style="border-radius:12px" src="https://open.spotify.com/embed/artist/{{ . }}?utm_source=generator" width="300" height="80" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+					</div>
+					{{ end }} 
+					<div class="{{ if .Site.Data.sitedata.footer.Spotify_Uri }}col-md-6{{ end }} social-icon">
+						<ul class="list-inline">
+								{{ with  .Site.Data.sitedata.footer.Facebook_Link }}   <li><a href="{{ . }}" target="_blank"><i class="tf-ion-social-facebook"></i></a></li>{{ end }} 
+								{{ with  .Site.Data.sitedata.footer.Twitter_Link }}   <li><a href="{{ . }}" target="_blank"><i class="tf-ion-social-twitter"></i></a></li>{{ end }} 
+								{{ with  .Site.Data.sitedata.footer.Google_Plus_Link }}   <li><a href="{{ . }}" target="_blank"><i class="tf-ion-social-google-outline"></i></a></li>{{ end }} 
+								{{ with  .Site.Data.sitedata.footer.YouTube_Link }}   <li><a href="{{ . }}" target="_blank"><i class="tf-ion-social-youtube"></i></a></li>{{ end }} 
+								{{ with  .Site.Data.sitedata.footer.Instagram_Link }}   <li><a href="{{ . }}" target="_blank"><i class="tf-ion-social-instagram"></i></a></li>{{ end }} 
+								{{ with  .Site.Data.sitedata.footer.LinkedIn_Link }}   <li><a href="{{ . }}" target="_blank"><i class="tf-ion-social-linkedin"></i></a></li>{{ end }} 
+								{{ with  .Site.Data.sitedata.footer.Pinterest_Link }}   <li><a href="{{ . }}" target="_blank"><i class="tf-ion-social-pinterest-outline"></i></a></li>{{ end }} 
+								{{ with  .Site.Data.sitedata.footer.Bandcamp_Link }}   <li><a href="{{ . }}" target="_blank"><img class="social-image" src="/assets/icons/bc-logotype-light-128.png"/></a></li>{{ end }} 
+								{{ with  .Site.Data.sitedata.footer.Soundcloud_Link }}   <li><a href="{{ . }}" target="_blank"><img class="social-image" src="/assets/icons/soundcloud-icon-white.png"/></a></li>{{ end }} 
+						</ul>
+					</div>
+				</div>
+
+				{{"<!-- copyright -->" | safeHTML}}
+				<div class="col-md-12">
+					<div class="copyright text-center flex-col">
+						<a href="{{ .Site.BaseURL | absURL }}">
+							<!-- logo -->
+							<a class="navbar-brand logo" href="/">Solstice</a>
+							<!-- /logo -->
+						</a>
+						<br>
+
+						<p>{{ .Site.Data.sitedata.footer.Copyright_Text }}</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

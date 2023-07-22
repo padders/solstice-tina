@@ -1,0 +1,41 @@
+---
+label: About Section 2
+hide_body: false
+fields:
+- type: file
+  label: About Us Section two Left Side
+  description: Recommended Resolution 1137 × 759
+  name: banner_image
+  default: "/images/about/about-business-man.jpg"
+- type: text
+  name: about_us_section_2_title
+  label: About Us Section 2 Title
+  description: About Us Section 2 Title
+  default: We’re A Digital Design Agency.
+- type: textarea
+  name: description_section_2_title
+  label: About Us Section 2 Description
+  description: About Us Section 2 description
+  config:
+    wysiwyg: true
+    schema:
+      format: markdown
+  default: Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam tempora
+    itaque, autem dolores culpa cum mollitia voluptate nesciunt voluptatibus quasi.
+- name: h1_title
+  type: boolean
+  label: H1 title
+  description: Can only be one h1 per page - only add if you're sure
+- type: boolean
+  label: Link Button
+  name: about_link_btn
+- type: text
+  name: about_button_text
+  label: About Button text
+  description: Text for Button in about setion
+  default: Explore
+- type: text
+  name: about_button_url
+  label: About Button URL
+  description: About Button URL
+  default: "#"

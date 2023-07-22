@@ -1,0 +1,17 @@
+---
+label: three latest albums
+hide_body: true
+fields:
+- name: section_title
+  type: text
+  config:
+    required: false
+  label: Section Title
+  default: Albums
+- name: filter
+  type: text
+  config:
+    required: false
+  label: Filter by Tag
+  description: Allows you to filter the albums shown - enter a single tag that has
+    been applied to the albums - replace spaces with an _

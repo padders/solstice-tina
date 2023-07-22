@@ -1,0 +1,9 @@
+---
+label: Full width image
+hide_body: false
+fields:
+- type: file
+  label: Image
+  description: Recommended Resolution 1900 × 1000
+  name: image
+  default: "/images/slider/hero-area.jpg"

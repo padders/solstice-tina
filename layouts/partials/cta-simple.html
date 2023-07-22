@@ -1,0 +1,13 @@
+{{"<!-- Start Call To Action Simple -->" | safeHTML}}
+<section class="call-to-action section-sm overly" style="background-color:{{ .Params.cta_backcolor}}">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 text-center">
+               {{ with .Params.cta_heading}} <h2>{{ . }}</h2> {{ end }}
+               {{ with .Params.cta_content }} <p>{{ . }}</p> {{ end }}
+                <a href="{{ .Params.cta_button_url}}" class="btn btn-main">{{ with .Params.cta_button_text}} {{ . }} {{end}}</a>
+            </div>
+        </div>
+    </div>
+</section>
+{{"<!-- Start Services Section -->" | safeHTML}}

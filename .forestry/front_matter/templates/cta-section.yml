@@ -1,0 +1,33 @@
+---
+label: Call to Action
+hide_body: false
+fields:
+- type: text
+  label: Call to Action Heading
+  name: cta_heading
+  description: CTA Heading
+  default: Great Design & Incredible Features
+- type: textarea
+  name: cta_content
+  label: Call to Action Content
+  description: Paragraph of information for Call to Action section
+  default: Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, excepturi.
+    At recusandae sit perferendis autem,iste tempora nostrum numquam sapiente!
+- type: file
+  label: Call to Action Background Image
+  description: Recommended Resolution 1,208px × 401px
+  name: cta_image
+  default: "/images/backgrounds/bg-1.jpg"
+- type: boolean
+  label: Link Button
+  name: link_btn
+- type: text
+  name: cta_button_text
+  label: Call To Action Button text
+  description: Text for Button in Call To Action setion
+  default: Explore Us
+- type: text
+  name: cta_button_url
+  label: Call To Action Button URL
+  description: Call To Action Button URL
+  default: "#"

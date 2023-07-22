@@ -1,0 +1,26 @@
+{{"<!-- Start FAQ Section -->" | safeHTML}}
+<section class="bg-white faq section" id="faq">
+    <div class="container">
+        <div class="row">
+            {{"<!-- section title -->" | safeHTML}}
+            <div class="title text-center wow fadeIn" data-wow-duration="1500ms">
+                <h2 class="">{{ .Params.faq_heading}}  </h2>
+            </div>
+            {{"<!-- /section title -->" | safeHTML}}
+
+            {{ range .Params.faq_section }}
+            {{"<!-- About item -->" | safeHTML}}
+            <div class="col-md-12 text-center wow fadeInUp faqsection" data-wow-duration="500ms">
+                <div class="question text-center">
+                    {{ with .question }}<h3 class="ddd">{{ . }}</h3>{{ end }}
+                </div>
+                {{"<!-- FAQ -->" | safeHTML}}
+                <div class="content answer text-center">
+                    {{ with .answer | markdownify}}  <p>{{ . }}</p>{{ end }}
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{"<!-- /about -->" | safeHTML}}

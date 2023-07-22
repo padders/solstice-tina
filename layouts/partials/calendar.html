@@ -1,0 +1,174 @@
+
+
+
+{{"<!-- Start Cal Section -->" | safeHTML}}
+<section class="bg-steamfort text-dark google-calendar section" id="calendarSection">
+    <div class="container">
+        <div class="row">
+            {{"<!-- Contact Form -->" | safeHTML}}
+            <div class="contact-form col-md-6 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                <div class="title wow fadeIn" data-wow-duration="1500ms">
+                    <h3>{{ .Params.form_heading}}  </h3>
+                </div>
+                <form id="booking-form" method="post" data-netlify="true" data-netlify-recaptcha="true" netlify-honeypot="hp2field" name="booking-form">
+
+                    <div class="form-group">
+                        <input type="text" placeholder="First Name *" class="form-control" name="booking_firstname" id="booking_firstname" data-error="#bookErrNm1" required>
+                        <div class="form-error" id="bookErrNm1"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" placeholder="Last Name *" class="form-control" name="booking_lastname" id="booking_lastname" data-error="#bookErrNm2" required>
+                        <div class="form-error" id="bookErrNm2"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" placeholder="Company/organisation" class="form-control" name="organisation" id="organisation" >
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" placeholder="Address line 1 *" class="form-control" name="address1" id="address1" data-error="#bookErrNm3" required>
+                        <div class="form-error" id="bookErrNm3"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" placeholder="Address line 2 *" class="form-control" name="address2" id="address2" data-error="#bookErrNm4" required>
+                        <div class="form-error" id="bookErrNm4"></div>
+                    </div>
+                
+                    <div class="form-group">
+                        <input type="text" placeholder="Address line 3" class="form-control" name="address3" id="address3" >
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" placeholder="Postcode *" class="form-control" name="postcode" id="postcode" data-error="#bookErrNm5" required>
+                        <div class="form-error" id="bookErrNm5"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="tel" placeholder="Contact number *" class="form-control" name="phone" id="phone" data-error="#bookErrNm6" required>
+                        <div class="form-error" id="bookErrNm6"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" placeholder="Email address *" class="form-control" name="booking_email" id="booking_email" data-error="#bookErrNm7" required>
+                        <div class="form-error" id="bookErrNm7"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" placeholder="Preferred date *" class="form-control" name="preferred_date" id="preferred_date" data-error="#bookErrNm8" autocomplete="off" required>
+                        <div class="form-error" id="bookErrNm8"></div>
+                    </div>
+
+                    <div class="form-group">
+                        <textarea rows="6" placeholder="Other comments" class="form-control" name="comments" id="comments" ></textarea>
+                    </div>
+
+                    <div style="display: none">
+                        <label>Page Click Origin: <input type="text" name="click_origin" id="click_origin" value="none"/></label>
+                    </div>
+
+                    <div style="display: none" class="hpot">
+                        <label>Leave this field empty: <input name="hp2field" id="hp2field"></label>
+                    </div>
+                    <div class="checkbox"><label for="terms" class="terms-text">We take your data privacy seriously. Please read our <a href="/{{ with .Params.terms_and_conditions_link}}{{ . }}{{ end }}" target="_blank">Privacy Policy</a>.</label></div>
+                    <div class="form-group checkbox">
+                        <label><input id="booking_terms" name="booking_terms" type="checkbox" value="" required data-error="#bookErrNm9">Accept Privacy Policy</label>
+                        <div class="form-error" id="bookErrNm9"></div>
+                    </div>
+
+                    <div data-netlify-recaptcha="true"></div>
+                    
+                    <div class="row">
+                        <div class="col-xs-6">
+                            <div id="bf-submit">
+                                <input type="submit" id="booking-submit-button" class="btn" value="Submit">
+                            </div>
+                        </div>
+                        <div class="col-xs-6">
+                            <div id="bf-clear">
+                                <input id="contact-clear-button" class="btn" type="reset" value="Clear">
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+                <div id="booking-success" class="success">
+                    Thank you for your booking request. We'll get back to you as soon as possible to confirm.
+                </div>
+
+                <div id="booking-fail" class="error">
+                    Unfortunately, your booking request could not be delivered at this time. You could try contacting us using the details in our <a href="#contact-us">Contact</a> section
+                </div>
+            </div>
+            {{"<!-- /Contact Form -->" | safeHTML}}
+
+            {{"<!-- calendar section -->" | safeHTML}}
+            <div class="col-md-6">
+                <div class="title wow fadeIn" data-wow-duration="1500ms">
+                    <h3>{{ .Params.calendar_heading}}  </h3>
+                </div>
+                <div id="calendar"></div>
+                <div class="col-md-6 calendarKey">
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                        <span class="badge">   </span>
+                        Date Unavailable
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            {{"<!-- /calendar section -->" | safeHTML}}
+        </div>
+    </div>
+</section>
+{{"<!-- /cal -->" | safeHTML}}
+
+
+
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        $( "#preferred_date" ).datepicker({ dateFormat: 'dd/mm/yy' });
+
+        var calendarEl = document.getElementById('calendar');
+
+        var calendar = new FullCalendar.Calendar(calendarEl, {
+            plugins: [ 'dayGrid', 'list', 'googleCalendar' ],
+            header: {
+                left: 'prev,next today',
+                center: 'title',
+                right: 'listYear'
+            },
+
+            displayEventTime: false, // don't show the time column in list view
+
+            // THIS KEY WON'T WORK IN PRODUCTION!!!
+            // To make your own Google API key, follow the directions here:
+            // http://fullcalendar.io/docs/google_calendar/
+            googleCalendarApiKey: '{{.Params.calendar_code}}',
+
+            // pull events from your calendar
+            events: {
+                googleCalendarId: '{{.Params.calendar_id}}'
+            },
+
+            eventDataTransform: function(eventData) {
+                eventData.rendering = 'background';
+            },
+
+            eventClick: function(arg) {
+                // prevents current tab from navigating
+                arg.jsEvent.preventDefault();
+            }
+        });
+
+        calendar.render();
+
+        // Add in contact form origin - i.e. which section the user clicked from to get to the contact form - defaults to none
+        // Note that looking at the value in the inspect view won't show the updated value, but it should be passed through in the form
+        $('.btn-contact-passthrough').click(function(){
+            $('#click_origin').val($(this).data("section"));
+        });
+    });
+</script>

@@ -1,0 +1,31 @@
+{{"<!-- Start workshop Section -->" | safeHTML}}
+<section class="bg-steamfort text-dark workshop section" id="{{ .Params.workshop_id }}">
+    <div class="container">
+        <div class="row">
+            {{"<!-- section title -->" | safeHTML}}
+            <div class="title wow fadeIn" data-wow-duration="1500ms">
+                <div class="col-sm-12">
+                    <h2>{{ .Params.workshop_heading}}  </h2>
+                    <div class="border black"></div>
+                </div>
+            </div>
+            {{"<!-- /section title -->" | safeHTML}}
+            {{"<!-- workshop content section -->" | safeHTML}}
+            <div class="col-sm-12">
+                <div class="workshop-block wow fadeIn" data-wow-duration="1500ms">
+                    {{ .Params.workshop_content | markdownify }}
+                </div>
+            </div>
+            {{"<!-- /workshop content section -->" | safeHTML}}
+        </div>
+    </div>
+</section>
+<section class="image-section">
+    <img class="full-width-image" src="{{ .Params.image_source | absURL }}"/>
+    {{"<!-- Start Call To Action -->" | safeHTML}}
+    {{ if .Params.display_workshop_button }}
+    <a href="{{ .Params.workshop_button_url }}" class="btn-contact-passthrough btn-image btn" data-section="{{ .Params.workshop_heading}}">{{ with .Params.workshop_button_text}} {{ . }} {{end}}</a>
+    {{"<!-- Start Services Section -->" | safeHTML}}
+    {{ end }}
+</section>
+{{"<!-- /workshop -->" | safeHTML}}

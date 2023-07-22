@@ -1,0 +1,33 @@
+{{"<!-- Basic -->" | safeHTML }}
+<section class="section bg-white text-dark">
+    <div class="container">
+        {{ with .Params.title }}
+        <div class="row">
+            {{"<!-- section title -->" | safeHTML }}
+            <div class="col-md-12">
+                <div class="title pb-2 text-center">
+                    <h2>{{ . }}</h2>
+                </div>
+            </div>
+            {{"<!-- /section title -->" | safeHTML }}
+        </div>
+        {{ end }}
+        <div class="row">
+            <div class="col-md-12">
+                {{ range .Params.press }}
+                    <div class="col-md-10 col-md-offset-1 interview-surround nopadding bg-light">
+                        <a href="{{ .url }}" target="_blank">
+                            <div class="row">
+                                <div class="col-sm-12 list-inline-between row-eq-height">
+                                    <div class="interview flex-align-center"><p class="bold m-0">{{ .media_company }}</p></div>
+                                    <div class="interview flex-align-center"><p class="m-0">{{ .quote | markdownify }}</p></div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{"<!-- /Basic -->" | safeHTML }}

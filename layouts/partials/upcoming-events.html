@@ -1,0 +1,87 @@
+{{"<!-- Start Upcoming Events -->" | safeHTML}}
+{{ $displaySection := 0 }}
+{{ range $.Params.upcoming_events }}
+    {{ if ge (time .upcoming_event_date) (time (now.Format "2006-01-02")) }}
+        {{ $displaySection = 1 }}
+    {{ end }}
+{{ end }}
+
+{{ if (eq $displaySection 1) }}
+    <section class="upcoming overly bg-grey">
+        <div class="container">
+            <div class="row ">
+                <div class="col-lg-12">
+                    {{"<!-- section title -->" | safeHTML}}
+                    <div class="title wow fadeIn text-center" data-wow-duration="1500ms">
+                        <h2>{{ $.Params.title }}  </h2>
+                    </div>
+                    {{"<!-- /section title -->" | safeHTML}}
+                </div>
+            </div>
+            {{ range $.Params.upcoming_events }}
+                {{ if ge (time .upcoming_event_date) (time (now.Format "2006-01-02")) }}
+                <div class="nopadding">
+                    <div class="col-md-8 col-md-offset-2 upcoming-event bg-light nopadding">
+                        <a href="{{ .upcoming_event_url }}" target="_blank">
+                            <script type="application/ld+json">
+                                {
+                                    "@context": "https://schema.org",
+                                    "@type": "Event",
+                                    "name": "{{ .upcoming_event_title }}",
+                                    "startDate": "{{ dateFormat "Jan 2, 2006" .upcoming_event_date }}",
+                                    "location": {
+                                        "@type": "Place",
+                                        "name": "{{ .upcoming_event_location }}",
+                                        "address": "{{ .upcoming_event_location }}"
+                                    },
+                                    "image": [
+                                        "{{ .upcoming_event_image | absURL }}"
+                                    ],
+                                    "description": "{{ .upcoming_event_title }}",
+                                    "offers": {
+                                        "@type": "Offer",
+                                        "url": "{{ .upcoming_event_url }}",
+                                        "price": "{{ .upcoming_event_cost }}",
+                                        "priceCurrency": "GBP"
+                                    },
+                                    "performer": {
+                                        "@type": "PerformingGroup",
+                                        "name": "Dr Concrete"
+                                    }
+                                }
+                            </script>
+                            <div class="row row-eq-height">
+                                <div class="col-sm-3 no-padding">
+                                    {{ if .alt_text }}
+                                        {{ partial "image-srcset.html" (dict "src" .upcoming_event_image "alt" .alt_text "class" "event_image" "sizes" (slice 685 198 198 198) "ident" "" "Main" $.Main) }}
+                                    {{ else }}
+                                        {{ partial "image-srcset.html" (dict "src" .upcoming_event_image "alt" .upcoming_event_title "class" "event_image" "sizes" (slice 685 198 198 198) "ident" "" "Main" $.Main) }}
+                                    {{ end }}
+                                </div>
+                                <div class="col-sm-9 no-padding">
+                                    <div class="col-sm-9">
+                                        <div class="col-md-12 nopadding"><p class="event-date">{{ dateFormat "Jan 2, 2006" .upcoming_event_date }}</p></div>
+                                        <div class="col-md-12 nopadding"><p class="event-title">{{ .upcoming_event_title }}</p></div>
+                                        <div class="col-md-12 nopadding"><p class="event-location">{{ .upcoming_event_location }}</p></div>
+                                    </div>
+                                    <div class="col-sm-3">
+                                        <div class="col-md-12 nopadding">
+                                            <p class="event-cost text-center">&#163;{{ .upcoming_event_cost }}</p>
+                                        </div>
+                                        <div class="col-md-12 text-center">
+                                            <div class="event-link">
+                                                <i class="tf-ion-arrow-right-c event-arrow" aria-hidden="true"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {{ end }}
+            {{ end }}
+        </div>
+    </section>
+{{ end }}
+{{"<!-- Start Upcoming Events -->" | safeHTML}}

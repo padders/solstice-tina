@@ -1,0 +1,17 @@
+{{"<!-- Start Counter Section -->" | safeHTML}}
+<section id="counter" class="parallax-section bg-1 section overly" style='background-image: url("{{ .Site.Params.counter.bgImage | absURL }}")'>
+    <div class="container">
+        <div class="row">
+            {{ range .Params.counter_section}}
+            <div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInDown" data-wow-duration="500ms">
+                <div class="counters-item">
+                    <i class="{{ .icon_id }}"></i>
+                    <span data-speed="3000" data-to="{{ .counter_amount }}">{{ .counter_amount }}</span>
+                    <h3>{{ .section_title }}</h3>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{"<!-- /Counter Section -->" | safeHTML}}

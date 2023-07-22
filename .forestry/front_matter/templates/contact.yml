@@ -1,0 +1,59 @@
+---
+label: Contact
+hide_body: false
+fields:
+- name: title
+  label: Title
+  type: text
+  hidden: false
+  default: ''
+- name: enable
+  label: Enable
+  type: boolean
+  hidden: false
+  default: true
+- name: heading
+  label: Heading
+  type: text
+  hidden: false
+  default: ''
+- name: content
+  label: Content
+  type: textarea
+  hidden: false
+  config:
+    wysiwyg: true
+    schema:
+      format: markdown
+  default: ''
+- name: contactdetails
+  label: Contactdetails
+  type: field_group_list
+  fields:
+  - name: contacttype
+    type: select
+    default: ''
+    config:
+      required: false
+      options:
+      - Phone
+      - Email
+      - Address
+      source:
+        type: simple
+        section: 
+        file: 
+        path: 
+    label: Type
+  - name: icon
+    label: Icon
+    type: text
+    hidden: false
+    default: ''
+  - name: info
+    label: Info
+    type: text
+    hidden: false
+    default: ''
+  hidden: false
+  default: ''

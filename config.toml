@@ -1,0 +1,59 @@
+assetDir = "static/assets/"
+baseURL = "https://www.solstice-music.co.uk"
+languageCode = "en-us"
+relativeurls = false
+summaryLength = 30
+theme = "meghna-hugo"
+title = "Solstice Jazz"
+[[menu.nav]]
+URL = "/tour"
+name = "Live Dates"
+weight = 4
+[[menu.nav]]
+URL = "/#contact-us"
+name = "Contact"
+weight = 5
+[[menu.nav]]
+name = "Music"
+url = "/albums"
+weight = 3
+[[menu.nav]]
+URL = "/press-media"
+name = "Press/Media"
+weight = 2
+[[menu.nav]]
+URL = "/personnel"
+name = "Personnel"
+weight = 1
+[params]
+custom_css = ["css/custom.css"]
+footerLogo = "images/footerLogo.jpg"
+gmapAPI = ""
+home = "Home"
+logo = "images/logo.jpg"
+[[params.footer.socialIcon]]
+icon = "tf-ion-social-facebook"
+url = "#"
+[[params.footer.socialIcon]]
+icon = "tf-ion-social-twitter"
+url = "#"
+[[params.footer.socialIcon]]
+icon = "tf-ion-social-google-outline"
+url = "#"
+[[params.footer.socialIcon]]
+icon = "tf-ion-social-youtube"
+url = "#"
+[[params.footer.socialIcon]]
+icon = "tf-ion-social-linkedin"
+url = "#"
+[[params.footer.socialIcon]]
+icon = "tf-ion-social-dribbble-outline"
+url = "#"
+[[params.footer.socialIcon]]
+icon = "tf-ion-social-pinterest-outline"
+url = "#"
+[permalinks]
+albums = "albums/:filename/"
+[taxonomies]
+category = "categories"
+tag = "tags"

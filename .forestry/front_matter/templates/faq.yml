@@ -1,0 +1,31 @@
+---
+label: Frequently Asked Questions
+hide_body: false
+fields:
+- type: text
+  label: FAQ Heading
+  name: faq_heading
+  description: FAQ Heading
+  default: FAQs
+- type: field_group_list
+  label: FAQ Section
+  name: faq_section
+  description: Single FAQ Section
+  config:
+    min: 1
+  fields:
+  - type: text
+    label: Question
+    name: question
+    description: The question you wish to answer
+    default: How long does a workshop last?
+  - type: textarea
+    name: answer
+    label: Answer
+    description: The answer to the question
+    config:
+      wysiwyg: true
+      schema:
+        format: markdown
+    default: The basic introductory session lasts for 2 hours. The education workshop
+      can be run as a single one-off event or as part of a course.

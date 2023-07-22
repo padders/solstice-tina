@@ -1,0 +1,34 @@
+{{ define "main" }}
+
+ 
+
+
+{{ partial "header.html" . }}
+        
+{{ partial "preloader.html" . }}
+
+
+
+
+
+{{ range .Params.page_section }}
+
+
+{{ if eq "hero-partial" .template }}
+
+
+    {{ partial "hero-area.html" . }}
+
+
+{{ end }}
+
+
+
+
+{{ end }}
+
+
+
+
+
+{{ end }}

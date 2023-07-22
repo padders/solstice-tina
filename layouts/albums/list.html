@@ -1,0 +1,59 @@
+{{ define "main" }}
+
+{{ partial "header.html" . }}
+
+{{ partial "navigation.html" . }}
+
+{{"<!-- Start Album Section -->" | safeHTML}}
+<section id="albums" class="section bg-white">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-white">
+                <li class="breadcrumb-item"><a href="{{ .Site.Home.Permalink }}">Home</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Albums</li>
+            </ol>
+        </nav>
+        <div class="row">
+            {{"<!-- section title -->" | safeHTML}}
+            <div class="title text-center wow fadeIn text-black">
+                <h2>Albums</h2>
+            </div>
+            {{"<!-- /section title -->" | safeHTML}}
+
+            <div class="clearfix">
+                <div class="row">
+                    {{ $counter := 500 }}
+                    {{ range where $.Site.RegularPages "Section" "albums" }}
+                        {{"<!-- single album post -->" | safeHTML}}
+                        <article class="row clearfix wow fadeIn album" data-wow-duration="{{ $counter }}ms">
+                            <div class="row bg-light-grey">            
+                                <div class="col-md-12">
+                                    <div class="title wow fadeIn" data-wow-duration="1500ms">
+                                        <h3 class="text-center h3-text mb-4 mt-4 text-black">{{ .Params.album_title }}</h3>
+                                        <div class="row-eq-height flex-ver-center">
+                                            <div class="col-md-6 text-center p-4">
+                                                {{ $altText1 := (print .Params.album_title " by ") }}
+                                                {{ $altText2 := (print $altText1 .Site.Data.settings.params.site_author.siteauthor) }}
+                                                {{ $altText3 := (print $altText2 " - album artwork") }}
+                                                {{ partial "image-srcset.html" (dict "src" .Params.album_image "alt" $altText3 "class" "img-center m-0" "sizes" (slice 540 540 435 535) "ident" "" "Main" $) }}
+                                            </div>
+                                            <div class="col-md-6 p-4">
+                                                <div class="para-large mb-4">{{ .Params.album_description | markdownify | truncate 400 }}</div>
+                                                <a class="btn" href="{{ .Permalink }}">View Details</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </article>
+                        {{"<!-- /single album post -->" | safeHTML}}
+                        {{ $counter = add $counter 300 }}
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{"<!-- /album -->" | safeHTML}}
+
+{{ end }}

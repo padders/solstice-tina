@@ -1,0 +1,48 @@
+{{ $src := ($.Main.GetPage "/uploads").Resources.GetMatch (strings.TrimPrefix "/uploads/" .src ) }}
+{{ if eq (len .sizesW) 4 }}
+    {{ $tinyw0 := (print (index .sizesW 0) "x") }}
+    {{ $tinyw1 := (print $tinyw0 (index .sizesH 0)) }}
+    {{ $tinyw := (print $tinyw1 " Center q85") }}
+    {{ $smallw0 := (print (index .sizesW 1) "x") }}
+    {{ $smallw1 := (print $smallw0 (index .sizesH 1)) }}
+    {{ $smallw := (print $smallw1 " Center q85") }}
+    {{ $mediumw0 := (print (index .sizesW 2) "x") }}
+    {{ $mediumw1 := (print $mediumw0 (index .sizesH 2)) }}
+    {{ $mediumw := (print $mediumw1 " Center q85") }}
+    {{ $largew0 := (print (index .sizesW 3) "x") }}
+    {{ $largew1 := (print $largew0 (index .sizesH 3)) }}
+    {{ $largew := (print $largew1 " Center q85") }}
+
+    {{ $imageScratch := newScratch }}
+
+    {{ $imageScratch.Set "tiny" ($src.Fill $tinyw) }}
+    {{ $imageScratch.Set "small" ($src.Fill $smallw) }}
+    {{ $imageScratch.Set "medium" ($src.Fill $mediumw) }}
+    {{ $imageScratch.Set "large" ($src.Fill $largew) }}
+
+    {{ $tiny := $imageScratch.Get "tiny" }}
+    {{ $small := $imageScratch.Get "small" }}
+    {{ $medium := $imageScratch.Get "medium" }}
+    {{ $large := $imageScratch.Get "large" }}
+
+    <img class="lozad {{ .class }}" 
+    sizes="(max-width: 767px) {{(index .sizesW 0)}}px,
+    (max-width: 991px) {{(index .sizesW 1)}}px,
+    (max-width: 1199px) {{(index .sizesW 2)}}px,
+    {{(index .sizesW 3)}}px"
+   
+ 
+
+    data-srcset="{{ if ge $src.Width "{{(index .sizesW 0)}}" }}
+        {{ $tiny.RelPermalink }} {{(index .sizesW 0)}}w,
+    {{ end }}
+    {{ if ge $src.Width "{{(index .sizesW 1)}}" }}
+        {{ $small.RelPermalink }} {{(index .sizesW 1)}}w,
+    {{ end }}
+    {{ if ge $src.Width "{{(index .sizesW 2)}}" }}
+        {{ $medium.RelPermalink }} {{(index .sizesW 2)}}w,
+    {{ end }}
+    {{ if ge $src.Width "{{(index .sizesW 3)}}" }}
+        {{ $large.RelPermalink }} {{(index .sizesW 3)}}w
+    {{ end }}" data-orig-width="{{$src.Width}}" data-orig-height="{{$src.Height}}" data-ident="{{.ident}}" data-src="{{ $medium.RelPermalink }}" alt="{{ .alt }}"{{ if eq .fancybox "true" }} data-fancybox="gallery"{{ end }}{{ if eq .fitcover "true" }} width="100%" height="100%"{{ end }}/>
+{{ end }}

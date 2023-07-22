@@ -1,0 +1,8 @@
+---
+label: Gallery
+hide_body: true
+fields:
+- type: image_gallery
+  name: gallery
+  label: gallery
+  description: gallery

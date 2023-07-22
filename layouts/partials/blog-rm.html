@@ -1,0 +1,146 @@
+
+{{"<!-- Start Blog Section -->" | safeHTML}}
+{{ $blogCount := len (where site.RegularPages "Section" "blog") }}
+{{ if gt $blogCount 0 }}
+<section id="blog" class="section bg-white pt-4 pb-4">
+    <div class="container">
+        <div class="row">
+
+            {{"<!-- section title -->" | safeHTML}}
+            <div class="title pb-1 text-center wow fadeInDown">
+                {{with .Params.heading}} <h2 class="h2-text mb-8">{{ . }}</h2> {{ end }}
+            </div>
+            {{"<!-- /section title -->" | safeHTML}}
+
+            <div class="clearfix">
+                <div class="row-eq-height">     
+                    {{ $counter := 500 }}
+                    {{ $loopCounter := 0 }}
+                    {{ range $index, $element := (where site.RegularPages "Section" "blog") }}
+                        {{ if and (.Summary) (lt $loopCounter 1) }}
+                            {{ if eq $loopCounter 0 }}
+                                {{"<!-- single blog post -->" | safeHTML}}
+                                <article class="col-md-{{ if eq $blogCount 1 }}12{{ else }}6{{ end }} col-xs-12 clearfix wow fadeIn" data-wow-duration="{{ $counter }}ms">
+                                    <script type="application/ld+json">
+                                        {
+                                            "@context": "https://schema.org",
+                                            "@type": "NewsArticle",
+                                            "mainEntityOfPage": {
+                                            "@type": "WebPage",
+                                            "@id": "{{ .Permalink }}"
+                                            },
+                                            "headline": "{{ .Title }}e",
+                                            "image": [
+                                            "{{ .Params.image | absURL }}"
+                                            ],
+                                            "datePublished": "{{ dateFormat "Monday, Jan 2, 2006" .Date }}",
+                                            "dateModified": "{{ dateFormat "Monday, Jan 2, 2006" .Date }}",
+                                            "author": {
+                                            "@type": "Person",
+                                            "name": "{{ .Params.author }}"
+                                            },
+                                            "publisher": {
+                                            "@type": "Organization",
+                                            "name": "{{ .Site.Data.settings.params.site_author.siteauthor }}",
+                                            "logo": {
+                                                "@type": "ImageObject",
+                                                "url": "{{ .Site.Params.logo | absURL }}"
+                                            }
+                                            },
+                                            "description": "{{ .Summary }}"
+                                        }
+                                    </script>
+                                    
+                                    <div class="post-block">
+                                        <a href="{{ .Permalink }}">
+                                            <div class="media-wrapper-large">
+                                                {{ if .Params.alt_text }}
+                                                    {{ partial "image-srcset-crop.html" (dict "src" .Params.image "alt" .Params.alt_text "class" "blogCoverImage" "sizesW" (slice 500 700 800 1140 ) "sizesH" (slice 500 265 265 265) "fitcover" "true" "ident" "" "Main" $.Main) }}
+                                                {{ else }}
+                                                    {{ partial "image-srcset.html" (dict "src" .Params.image "alt" .Title "class" "blogCoverImage" "sizes" (slice 685 800 800 1140) "fitcover" "true" "ident" "" "Main" $.Main) }}
+                                                {{ end }}
+                                            </div>
+
+                                            <div class="content bg-dark">
+                                                <h3>{{ .Title }}</h3>
+                                                <p>{{ .Summary }}</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </article>
+                                {{"<!-- /single blog post -->" | safeHTML}}
+                                {{ $counter = add $counter 300 }}
+                                {{ $loopCounter = add $loopCounter 1 }}
+                            {{ end }}
+                        {{ end }}
+                    {{ end }}
+                    <div class="col-md-6 flex-col">
+                    {{ range $index, $element := (where site.RegularPages "Section" "blog") }}
+                        {{ if and (.Summary) (gt $index 0) (lt $loopCounter 3) }}
+                            {{"<!-- single blog post -->" | safeHTML}}
+                            <article class="clearfix wow fadeIn" data-wow-duration="{{ $counter }}ms">
+                                <script type="application/ld+json">
+                                    {
+                                        "@context": "https://schema.org",
+                                        "@type": "NewsArticle",
+                                        "mainEntityOfPage": {
+                                        "@type": "WebPage",
+                                        "@id": "{{ .Permalink }}"
+                                        },
+                                        "headline": "{{ .Title }}e",
+                                        "image": [
+                                        "{{ .Params.image | absURL }}"
+                                        ],
+                                        "datePublished": "{{ dateFormat "Monday, Jan 2, 2006" .Date }}",
+                                        "dateModified": "{{ dateFormat "Monday, Jan 2, 2006" .Date }}",
+                                        "author": {
+                                        "@type": "Person",
+                                        "name": "{{ .Params.author }}"
+                                        },
+                                        "publisher": {
+                                        "@type": "Organization",
+                                        "name": "Steamfort ltd",
+                                        "logo": {
+                                            "@type": "ImageObject",
+                                            "url": "{{ .Site.Params.logo | absURL }}"
+                                        }
+                                        },
+                                        "description": "{{ .Summary }}"
+                                    }
+                                </script>
+                                <div class="post-block">
+                                    <a class="row-eq-height" href="{{ .Permalink }}">
+                                        <div class="col-xs-4 col-xs-none media-wrapper p-0">
+                                            {{ if .Params.alt_text }}
+                                                {{ partial "image-srcset.html" (dict "src" .Params.image "alt" .Params.alt_text "class" "blogCoverImage" "sizes" (slice 300 300 300 300) "fitcover" "true" "ident" "" "Main" $.Main) }}
+                                            {{ else }}
+                                                {{ partial "image-srcset.html" (dict "src" .Params.image "alt" .Title "class" "blogCoverImage" "sizes" (slice 300 300 300 300) "fitcover" "true" "ident" "" "Main" $.Main) }}
+                                            {{ end }}
+                                        </div>
+
+                                        <div class="col-xs-8 col-none-12 content bg-dark">
+                                            <h3 class="small">{{ .Title }}</h3>
+                                            <p class="m-0 para-small">{{ .Summary | truncate 200 }}</p>
+                                        </div>
+                                    </a>
+                                </div>
+                            </article>
+                            {{"<!-- /single blog post -->" | safeHTML}}
+                            {{ $counter = add $counter 300 }}
+                            {{ $loopCounter = add $loopCounter 1 }}
+                        {{ end }}
+                    {{ end }}
+                    </div>
+                </div>
+            </div>
+            {{ if gt $blogCount 3 }}
+            <div class="all-post text-center">
+                <a class="btn" href="/blog">See more</a>
+            </div>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{"<!-- /blog -->" | safeHTML}}
+{{ end }}
+

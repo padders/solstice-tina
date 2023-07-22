@@ -1,0 +1,51 @@
+---
+label: About Section 1
+hide_body: false
+fields:
+- type: text
+  label: About Heading
+  name: about_heading
+  description: About Heading
+  default: About Us
+- type: textarea
+  name: about_content
+  label: Section content
+  description: Section content
+  config:
+    wysiwyg: true
+    schema:
+      format: markdown
+  default: Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam tempora
+    itaque, autem dolores culpa cum mollitia voluptate nesciunt voluptatibus quasi.
+- type: field_group_list
+  label: About Section
+  name: about_section
+  description: Single About Section
+  config:
+    min: 3
+    max: 3
+  fields:
+  - type: text
+    label: Icon ID
+    name: icon_id
+    description: The path to the icon file
+    default: "/assets/icons/confetti.svg"
+  - type: text
+    name: section_title
+    label: Section Title
+    description: Title of section
+    default: We're Creative
+  - type: textarea
+    name: section_content
+    label: Section Content
+    description: Section Content
+    config:
+      wysiwyg: true
+      schema:
+        format: markdown
+    default: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, nihil,
+      libero, perspiciatis eos provident laborum eum dignissimos.
+  - type: text
+    name: section_url
+    label: Button URL destination
+    description: Destination for the sections button

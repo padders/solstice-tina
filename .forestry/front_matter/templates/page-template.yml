@@ -1,0 +1,61 @@
+---
+label: Page Template
+hide_body: true
+fields:
+- type: blocks
+  name: page_section
+  label: Page
+  description: Test blocks
+  template_types:
+  - albums
+  - about-section-1
+  - about-section-2
+  - basic-content
+  - blog
+  - calendar
+  - cta-section
+  - cta-section-simple
+  - contact
+  - contact-mailchimp
+  - counter-rm
+  - external_ad
+  - faq
+  - formatted-links
+  - gallery-masonry
+  - hero-partial
+  - partner-links
+  - portfolio
+  - old_gigs
+  - pricing
+  - service
+  - skills-section
+  - specialities-section
+  - team
+  - testimonial
+  - upcoming_gigs
+  - video-gallery-masonry
+  - workshop
+- name: title
+  type: text
+  config:
+    required: true
+  label: Title
+  description: Page Title
+- name: meta_description
+  type: text
+  config:
+    required: false
+  label: Meta Description
+  description: Meta Description
+- name: meta_og_image
+  label: Meta OG Image
+  description: Meta OG Image
+  type: file
+  hidden: false
+  config:
+    maxSize: 1
+    required: false
+pages:
+- content/_index.md
+- content/press-media.md
+- content/tour.md

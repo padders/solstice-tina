@@ -1,0 +1,61 @@
+---
+label: Pricing
+hide_body: false
+fields:
+- name: enable
+  label: Enable
+  type: boolean
+  hidden: false
+  default: ''
+- name: heading
+  label: Heading
+  type: text
+  hidden: false
+  default: ''
+- name: heading_span
+  label: Heading Span
+  type: text
+  hidden: false
+  default: ''
+- name: pricing_table
+  label: Pricing Table
+  type: field_group_list
+  fields:
+  - name: title
+    label: Title
+    type: text
+    hidden: false
+    default: ''
+  - name: price
+    label: Price
+    type: text
+    hidden: false
+    default: ''
+  - name: time
+    label: Time
+    type: text
+    hidden: false
+    default: ''
+  - name: btn_url
+    label: Btn Url
+    type: text
+    hidden: false
+    default: ''
+  - name: btn_text
+    label: Btn Text
+    type: text
+    hidden: false
+    default: ''
+  - name: plan
+    label: Plan
+    type: field_group_list
+    fields:
+    - name: plan_details
+      label: Plan Details
+      type: text
+      hidden: false
+      default: ''
+    hidden: false
+    default: ''
+  hidden: false
+  default: ''

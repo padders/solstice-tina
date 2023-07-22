@@ -1,0 +1,83 @@
+---
+label: Contact Mailchimp
+hide_body: false
+fields:
+- name: enable
+  label: Enable
+  type: boolean
+  hidden: false
+  default: true
+- name: heading
+  label: Heading
+  type: text
+  hidden: false
+  default: ''
+- name: heading_span
+  label: Heading Span
+  type: text
+  hidden: false
+  default: ''
+- name: title
+  label: Content Title
+  type: text
+  hidden: false
+  default: ''
+- name: content
+  label: Content
+  type: textarea
+  hidden: false
+  config:
+    wysiwyg: true
+    schema:
+      format: markdown
+  default: ''
+- name: contactdetails
+  label: Contactdetails
+  type: field_group_list
+  fields:
+  - name: icon
+    label: Icon
+    type: text
+    hidden: false
+    default: ''
+  - name: info
+    label: Info
+    type: text
+    hidden: false
+    default: ''
+  hidden: false
+  default: ''
+- name: subscribe_title
+  label: Subscribe Title
+  type: text
+  hidden: false
+  default: ''
+- name: subscribe_content
+  label: Subscribe Content
+  type: textarea
+  hidden: false
+  config:
+    wysiwyg: true
+    schema:
+      format: markdown
+  default: ''
+- name: terms_and_conditions_link
+  label: Terms and Conditions page
+  type: text
+  hidden: false
+  default: ''
+- name: mailchimp_link
+  label: Mailchimp Form Link
+  type: text
+  hidden: false
+  default: ''
+- name: mailchimp_u
+  label: Mailchimp U value
+  type: text
+  hidden: false
+  default: ''
+- name: mailchimp_id
+  label: Mailchimp id value
+  type: text
+  hidden: false
+  default: ''

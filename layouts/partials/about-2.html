@@ -1,0 +1,26 @@
+{{"<!-- about 2 -->" | safeHTML}}
+<section class="section about-2 pt-4 pb-4 bg-white" id="about2">
+    <div class="row">            
+        <div class="col-md-12">
+            <div class="title wow fadeIn" data-wow-duration="1500ms">
+                {{ if .Params.h1_title }}
+                <h1 class="text-center h2-text mb-8 text-black">{{ .Params.about_us_section_2_title }}</h1>
+                {{ else }}
+                <h2 class="text-center">{{ .Params.about_us_section_2_title }}</h2>
+                {{ end }}
+                <div class="row-eq-height">
+                    <div class="col-md-6 text-center">
+                        <img class="img-center" src="{{ .Params.banner_image | absURL}}" alt="image">
+                    </div>
+                    <div class="col-md-6">
+                        <div class="para-large">{{ .Params.description_section_2_title | markdownify }}</div>
+                        {{ if .Params.about_link_btn}}
+                            <a data-scroll href="{{ .Params.about_button_url}}" class="btn m-4">{{ .Params.about_button_text}}</a>
+                        {{ end }}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{"<!-- /about 2 -->" | safeHTML}}

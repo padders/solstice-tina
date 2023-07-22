@@ -1,0 +1,30 @@
+---
+label: Previous Gigs
+hide_body: true
+fields:
+- name: section_title
+  type: text
+  config:
+    required: false
+  label: Section Title
+  default: Previous Gigs
+- type: number
+  name: display_limit
+  label: Display Limit
+  description: Set the number of events to show on a page - link to full gig listing
+    will be shown when over the limit if you go over
+  default: 10
+  hidden: false
+  config:
+    step: 1
+- name: all_gigs_url
+  type: text
+  config:
+    required: false
+  label: The url showing all gigs
+  default: "/tour"
+- name: band_filter
+  type: text
+  config:
+    required: false
+  label: enter a bandname to get a filter of gigs for that band only

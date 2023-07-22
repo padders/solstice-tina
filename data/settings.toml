@@ -1,0 +1,10 @@
+[params.analytics]
+googleanalytics = ""
+tagmanager = ""
+[params.google_verification]
+google_verification_code = ""
+[params.site_author]
+siteauthor = "Solstice"
+[params.site_name]
+sitename = "Solstice"
+subtitle = ""

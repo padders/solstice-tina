@@ -1,0 +1,61 @@
+---
+label: Team
+hide_body: false
+fields:
+- name: enable
+  label: Enable
+  type: boolean
+  hidden: false
+  default: ''
+- name: heading
+  label: Heading
+  type: text
+  hidden: false
+  default: ''
+- name: headingspan
+  label: Heading Span
+  type: text
+  hidden: false
+  default: ''
+- name: teammember
+  label: Team Member
+  type: field_group_list
+  fields:
+  - name: image
+    label: Image
+    type: file
+    hidden: false
+    default: ''
+  - name: name
+    label: Name
+    type: text
+    hidden: false
+    default: ''
+  - name: designation
+    label: Designation
+    type: text
+    hidden: false
+    default: ''
+  - name: description
+    label: Description
+    type: textarea
+    hidden: false
+    default: ''
+  - name: socialicon
+    label: Social Icon
+    type: field_group_list
+    fields:
+    - name: icon
+      label: Icon
+      type: text
+      hidden: false
+      default: ''
+    - name: url
+      label: Url
+      type: text
+      hidden: false
+      default: ''
+    hidden: false
+    default: ''
+  hidden: false
+  default: ''

@@ -1,0 +1,18 @@
+---
+label: External Advert
+hide_body: false
+fields:
+- type: text
+  label: Text content
+  name: external_ad_text
+  description: Text content above image link
+  default: find us at
+- type: file
+  label: Advert image
+  description: This is a link image, so it should be relatively small
+  name: external_ad_image
+- type: text
+  name: external_ad_link
+  label: link destination
+  description: URL that the image link will take you to
+  default: Explore Us

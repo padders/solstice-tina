@@ -1,0 +1,63 @@
+---
+label: Video Gallery
+hide_body: true
+fields:
+- type: number
+  name: display_limit
+  label: Display Limit
+  description: Set the number of videos to show in the gallery - a 'show all' button
+    will be added if there are more
+  default: 16
+  hidden: false
+  config:
+    min: 4
+    step: 1
+- type: tag_list
+  name: tags
+  label: tags
+  description: Provide tags for the gallery - These will be listed at the top as filters
+    - replace spaces with an _
+- name: video_section
+  type: field_group_list
+  fields:
+  - name: type
+    type: select
+    default: youtube video
+    config:
+      required: true
+      options:
+      - youtube video
+      - youtube playlist
+      - vimeo video
+      source:
+        type: simple
+        section: 
+        file: 
+        path: 
+    label: type
+    description: Choose the video embed source
+  - name: embed_code
+    type: text
+    config:
+      required: false
+    label: Embed Code
+    description: <strong>For Youtube - </strong><br>Select <strong>'share'</strong>
+      under the video and copy the embed code into a text editor. Look for the section
+      similar to the following and copy the ID highlighted in bold<br>src="https://www.youtube-nocookie.com/embed/<strong>tNo43ZKbCjA</strong>"<br>
+      <strong>For a Youtube Playlist - </strong><br>copy the url into a text editor.
+      Look for the section similar to the following and copy the ID highlighted in
+      bold<br>https://www.youtube.com/watch?v=3e3UueDTB6w&list=<strong>PLf1pwso2W5-H_MlkF1SpwZNEkRbyyv_4V</strong><br>
+      <strong>For Vimeo - </strong><br>Select <strong>'share'</strong> under the video
+      and copy the link code into a text editor. Look for the section similar to the
+      following and copy the ID highlighted in bold<br>https://vimeo.com/<strong>178823364</strong>"
+  - type: tag_list
+    name: tags
+    label: tags
+    description: Provide tags for this image - must be a tag that is also listed in
+      the gallery - replace spaces with an _
+  config:
+    min: 
+    max: 
+    labelField: 
+  description: Add the relevant embed id for the type you select
+  label: Embedded Video

@@ -1,0 +1,188 @@
+---
+label: Album
+hide_body: true
+fields:
+- name: title
+  type: text
+  config:
+    required: true
+  label: Title
+  description: Page Title
+- name: meta_description
+  type: text
+  config:
+    required: false
+  label: Meta Description
+  description: Meta Description
+- name: meta_og_image
+  label: Meta OG Image
+  description: Meta OG Image
+  type: file
+  hidden: false
+  config:
+    maxSize: 1
+    required: false
+- type: file
+  label: Album main artwork
+  description: Recommended Resolution 1137 × 759
+  name: album_image
+  default: "/images/about/about-business-man.jpg"
+- type: text
+  name: album_title
+  label: Album Title
+  description: Album Title
+  default: My latest album.
+- type: tag_list
+  name: tags
+  label: tags
+  description: Provide tags for this album to allow filtering - then you can filter
+    the albums by tag in the album partial added to a page - replace spaces with an
+    _
+- type: textarea
+  name: album_description
+  label: Album Description
+  description: Album Description
+  config:
+    wysiwyg: true
+    schema:
+      format: markdown
+  default: Lorem ipsum dolor sit amet consectetur adipisicing elit. Aliquam tempora
+    itaque, autem dolores culpa cum mollitia voluptate nesciunt voluptatibus quasi.
+- name: purchase_link_text
+  type: text
+  config:
+    required: false
+  label: Purchase link text
+  description: paragraph text just before the purchase link
+  default: Grab your copy over at bandcamp
+- name: purchase_url
+  type: text
+  config:
+    required: false
+  label: Purchase Url
+- name: reviews
+  type: field_group_list
+  config: {}
+  fields:
+  - name: text
+    type: text
+    config:
+      required: false
+    label: link text
+  - name: url
+    type: text
+    config:
+      required: false
+    label: url
+  label: Press / Reviews
+  description: Add the Album's reviews or press
+- name: band_members
+  type: field_group_list
+  config: {}
+  fields:
+  - name: name
+    type: text
+    config:
+      required: false
+    label: name
+  - name: url
+    type: text
+    config:
+      required: false
+    label: url
+  label: Band Members
+  description: List the band members and add URLs to there sites
+- name: music
+  type: field_group_list
+  fields:
+  - name: type
+    type: select
+    default: spotify album
+    config:
+      required: true
+      options:
+      - soundcloud playlist
+      - soundcloud track
+      - spotify album
+      - spotify track
+      - bandcamp album
+      source:
+        type: simple
+        section: 
+        file: 
+        path: 
+    label: type
+    description: Choose if this embed is a playlist or just a single track
+  - name: embed_code
+    type: text
+    config:
+      required: false
+    label: Embed Code
+    description: <strong>For Soundcloud - </strong><br>Select <strong>'share'</strong>
+      under the song/playlist, go to the <strong>embed tab</strong>, and copy the
+      embed code into a text editor. Look for the section similar to the following
+      and copy the ID highlighted in bold<br>src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/playlists/<strong>1118503207</strong>&amp;color=%23ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false&amp;show_teaser=true"<br>
+      <strong>For Spotify - </strong><br>Select the three dots under a song/album,
+      then share, then 'copy spotify URI' and copy this into a text editor. Look for
+      the highlighted ID similar to the following<br> spotify:album:<strong>7ndyqoyQhar0ckM867PHwf</strong>
+      <strong>For Bandcamp - </strong><br>Select <strong>'Share / Embed'</strong>
+      under the album artwork, select 'embed this album', choose any style and copy
+      the embed code into a text editor. Look for the section similar to the following
+      and copy the ID highlighted in bold<br> src="https://bandcamp.com/EmbeddedPlayer/album=<strong>3541056107</strong/size=large/bgcol=333333/linkcol=0f91ff/artwork=small/transparent=true/"
+  config:
+    min: 
+    max: 
+    labelField: 
+  description: Add the relevant embed id for the type you select
+  label: Embedded Music
+- name: watch
+  type: field_group_list
+  fields:
+  - name: type
+    type: select
+    default: youtube video
+    config:
+      required: true
+      options:
+      - youtube video
+      - youtube playlist
+      - vimeo video
+      source:
+        type: simple
+        section: 
+        file: 
+        path: 
+    label: type
+    description: Choose the video embed source
+  - name: embed_code
+    type: text
+    config:
+      required: false
+    label: Embed Code
+    description: <strong>For Youtube - </strong><br>Select <strong>'share'</strong>
+      under the video and copy the embed code into a text editor. Look for the section
+      similar to the following and copy the ID highlighted in bold<br>src="https://www.youtube-nocookie.com/embed/<strong>tNo43ZKbCjA</strong>"<br>
+      <strong>For a Youtube Playlist - </strong><br>copy the url into a text editor.
+      Look for the section similar to the following and copy the ID highlighted in
+      bold<br>https://www.youtube.com/watch?v=3e3UueDTB6w&list=<strong>PLf1pwso2W5-H_MlkF1SpwZNEkRbyyv_4V</strong><br>
+      <strong>For Vimeo - </strong><br>Select <strong>'share'</strong> under the video
+      and copy the link code into a text editor. Look for the section similar to the
+      following and copy the ID highlighted in bold<br>https://vimeo.com/<strong>178823364</strong>"
+  config:
+    min: 
+    max: 
+    labelField: 
+  description: Add the relevant embed id for the type you select
+  label: Embedded Video
+- name: album_notes
+  type: textarea
+  default: ''
+  config:
+    required: false
+    wysiwyg: true
+    schema:
+      format: markdown
+  label: Album Notes
+pages:
+- content/albums/alimentation.md
+- content/albums/food-for-thought.md

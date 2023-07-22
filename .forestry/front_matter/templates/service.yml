@@ -1,0 +1,33 @@
+---
+label: Service Section
+hide_body: false
+fields:
+- type: text
+  label: Services Heading
+  name: service_heading
+  description: Services Heading
+  default: Our Services
+- type: field_group_list
+  label: Services Section
+  name: services_section
+  description: Single Services Section
+  config:
+    min: 6
+    max: 6
+  fields:
+  - type: text
+    label: Icon ID
+    name: icon_id
+    description: This is the icon ID (themefisher-font/demo.html )
+    default: tf-tools
+  - type: text
+    name: section_title
+    label: Section Title
+    description: Title of section
+    default: We're Creative
+  - type: textarea
+    name: section_content
+    label: Section Content
+    description: Section Content
+    default: Lorem ipsum dolor sit amet, consectetur adipisicing elit. Velit, nihil,
+      libero, perspiciatis eos provident laborum eum dignissimos.

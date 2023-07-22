@@ -1,0 +1,47 @@
+---
+label: Skills Section
+hide_body: false
+fields:
+- type: text
+  label: Skills Title
+  name: skills_title
+  description: Skills Title
+  default: Our Skills
+- type: text
+  label: Skills Heading
+  name: skills_heading
+  description: Skills Heading
+  default: We’ve skilled in wide range of web and Other digital market tools.
+- type: textarea
+  label: Skills Description
+  name: skills_description
+  description: Skills Description
+  default: Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perspiciatis
+    magni explicabo cum aperiam recusandae sunt accusamus totam. Quidem quos fugiat
+    sapiente numquam accusamus quas hic, itaque in libero reiciendis tempora!
+- type: file
+  label: Skill Image
+  name: skill_image
+  description: Recommended Resolution 1,200px × 400px
+  default: "/uploads/1200x400.png"
+- type: field_group_list
+  label: Skill % Section
+  name: skill_percentage_section
+  description: Skills Rating
+  config:
+    min: 1
+    max: 5
+  fields:
+  - type: text
+    name: section_title
+    label: Skill Name
+    description: Name of Skill
+    default: Business Development
+  - type: number
+    name: skill_percentage
+    label: Level of skill
+    description: This has a maximum of 100
+    config:
+      min: 0
+      max: 100
+    default: 100

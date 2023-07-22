@@ -1,0 +1,9 @@
+---
+label: Portfolio Section
+hide_body: false
+fields:
+- type: text
+  label: Portfolio Title
+  name: portfolio_title
+  description: Portfolio Title
+  default: Our Works

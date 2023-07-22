@@ -1,0 +1,57 @@
+---
+new_page_extension: md
+auto_deploy: true
+admin_path: ''
+webhook_url: 
+sections:
+- type: directory
+  path: content
+  label: Pages
+  create: documents
+  match: "*.md"
+  templates:
+  - page-template
+- type: directory
+  path: content/blog
+  label: Blog
+  create: documents
+  match: "**/*"
+  templates:
+  - blog-post-template
+- type: directory
+  path: content/albums
+  label: Albums
+  create: documents
+  match: "**/*"
+  templates:
+  - album
+- type: directory
+  path: content/gigs
+  label: Gigs
+  create: documents
+  match: "**/*"
+  templates:
+  - gig
+- type: directory
+  path: data/sitedata
+  label: Global Content
+  create: all
+  match: "**/*"
+- type: document
+  path: data/settings.toml
+  label: Site Settings
+upload_dir: content/uploads
+public_path: "/uploads"
+front_matter_path: ''
+use_front_matter_path: false
+file_template: ":filename:"
+build:
+  preview_env:
+  - HUGO_ENV=staging
+  - HUGO_VERSION=0.53
+  preview_output_directory: public
+  preview_docker_image: forestryio/build:latest
+  mount_path: "/opt/buildhome/repo"
+  instant_preview_command: hugo server -D -E -F --port 8080 --bind 0.0.0.0 --renderToDisk
+    -d public
+version: '0.53'

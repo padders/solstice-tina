@@ -1,0 +1,40 @@
+---
+label: Specialities section
+hide_body: false
+fields:
+- type: text
+  label: Title
+  name: specialities_title
+- type: field_group_list
+  label: Specialities section
+  name: specialities_section
+  description: produces a circle with centered text in a col-md-3 container
+  config:
+    min: 4
+  fields:
+  - type: textarea
+    label: Text header
+    name: specialities_text
+    description: The text content of the bubble
+    default: Team Building
+    config:
+      wysiwyg: true
+      schema:
+        format: markdown
+- name: add_button_link
+  type: boolean
+  label: Add Button Link?
+  description: Add a button to the bottom of the section?
+  default: false
+- name: button_url
+  type: text
+  config:
+    required: false
+  label: Button URL
+  description: URL for the button
+- name: button_text
+  type: text
+  config:
+    required: false
+  label: Button text
+  description: the text that appears on the button

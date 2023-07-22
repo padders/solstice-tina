@@ -1,0 +1,90 @@
+
+{{"<!-- Start Contact Us -->" | safeHTML}}
+<section id="contact-us" class="contact-us section-bg bg-dark-brown">
+    <div class="container">
+        <div class="row">
+
+            {{"<!-- section title -->" | safeHTML}}
+            <div class="title text-center wow fadeIn" data-wow-duration="500ms">
+                <h2>{{ with .Params.heading }} {{ . }} {{ end }}</h2>
+            </div>
+            {{"<!-- /section title -->" | safeHTML}}
+
+            {{"<!-- Contact Details -->" | safeHTML}}
+            <div class="contact-info col-md-6 wow fadeInUp" data-wow-duration="500ms">
+                {{ with .Params.title }}<h3>{{ . }}</h3> {{ end }}
+                {{ with .Params.content | markdownify}} <p> {{ . }} </p> {{ end }}
+                <div class="contact-details">
+                    {{ range .Params.contactdetails }}
+                        {{ if eq .contacttype "Phone" }}
+                            <div class="con-info clearfix">
+                                <i class="tf-ion-ios-telephone-outline"></i>
+                                <span><a href="tel:{{ .info }}">{{ .info }}</a></span>
+                            </div>
+                        {{ else if eq .contacttype "Email" }}
+                            <div class="con-info clearfix">
+                                <i class="tf-ion-ios-email-outline"></i>
+                                <span><a href="mailto:{{ .info }}">{{ .info }}</a></span>
+                            </div>
+                        {{ else if eq .contacttype "Address" }}
+                            <div class="con-info clearfix">
+                                <i class="tf-envelope2"></i>
+                                <span>{{ .info }}</span>
+                            </div>
+                        {{ end }}
+                    {{ end }}
+                </div>
+            </div>
+           
+            {{"<!-- Contact Form -->" | safeHTML}}
+            <div class="contact-form col-md-6 wow fadeInUp" data-wow-duration="500ms" data-wow-delay="300ms">
+                <form id="contact-form" method="post" data-netlify="true" netlify-honeypot="hp2field" name="contact-form">
+
+                    <div class="form-group">
+                        <input type="text" placeholder="Your Name" class="form-control" name="name" id="name" >
+                    </div>
+
+                    <div class="form-group">
+                        <input type="email" placeholder="Your Email" class="form-control" name="email" id="email" >
+                    </div>
+
+                    <div class="form-group">
+                        <input type="text" placeholder="Subject" class="form-control" name="subject" id="subject" >
+                    </div>
+
+                    <div class="form-group">
+                        <textarea rows="6" placeholder="Message" class="form-control" name="message" id="message" ></textarea>
+                    </div>
+                    <div style="display: none" class="hpot">
+                        <label>Leave this field empty: <input name="hp2field"></label>
+                      </div>
+                    
+
+                    <div id="cf-submit">
+                        <input type="submit" id="contact-submit-button" class="btn" value="Submit">
+                    </div>
+
+                </form>
+                <div id="mail-success" class="success">
+                    Thank you. We will contact you as soon as possible.
+                </div>
+
+                <div id="mail-fail" class="error">
+                    Unfortunately, your message could not be delivered at this time.
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    
+    {{ if .Params.enable_maps }}
+    {{"<!-- Google Map -->" | safeHTML}}
+    <div class="google-map">
+        <div id="map-canvas" {{ with .Params.mapLatitude }} data-latitude="{{ . }}" {{ end }} 
+        {{ with .Params.mapLongitude }} data-longitude="{{ . }}" {{ end }}></div>
+    </div>
+    {{ end }}
+
+</section>
+{{"<!-- /contact -->" | safeHTML}}

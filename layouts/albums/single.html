@@ -1,0 +1,105 @@
+{{ define "main" }}
+
+{{ partial "header.html" . }}
+
+{{ partial "navigation.html" . }}
+
+<section class="section bg-white">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-white">
+                <li class="breadcrumb-item"><a href="{{ .Site.Home.Permalink }}">Home</a></li>
+                <li class="breadcrumb-item"><a href="{{ .Parent.Permalink }}">Albums</a></li>
+                <li class="breadcrumb-item active" aria-current="page">{{ .Params.album_title }}</li>
+            </ol>
+        </nav>
+        <article class="row clearfix wow fadeIn album" data-wow-duration="1500ms">
+            <div class="row">            
+                <div class="col-md-12">
+                    <div class="title wow fadeIn" data-wow-duration="1500ms">
+                        <h1 class="text-center h3-text mb-4 mt-4 text-black">{{ .Params.album_title }}</h1>
+                        <div class="col-md-12">
+                            <div class="row">
+                                <div class="float-left text-center p-4">
+                                    {{ $altText1 := (print .Params.album_title " by ") }}
+                                    {{ $altText2 := (print $altText1 .Site.Data.settings.params.site_author.siteauthor) }}
+                                    {{ $altText3 := (print $altText2 " - album artwork") }}
+                                    {{ partial "image-srcset.html" (dict "src" .Params.album_image "alt" $altText3 "class" "img-center m-0" "sizes" (slice 540 540 435 535) "ident" "" "Main" $) }}
+                                </div>
+                                <div class="para-large mb-4 p-4">
+                                    {{ .Params.album_description | markdownify }}
+                                </div>
+                                <div id="purchase" class="ml-2 mr-2">
+                                    <div class="col-md-12 purchase pt-2 pb-2 bg-light mb-4">
+                                        <div class="col-md-6 para-large text-center">{{ .Params.purchase_link_text }}</div>
+                                        <div class="col-md-6 text-center">
+                                            <a class="btn" href="{{ .Params.purchase_url }}" target="_blank">Purchase {{ .Params.album_title }}</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mb-4">
+                                <div class="row-eq-height">
+                                    {{ .Scratch.Set "colwidth" "12" }}
+                                    {{ if .Params.reviews }}
+                                        {{ if .Params.band_members }}
+                                            {{ .Scratch.Set "colwidth" "8" }}
+                                        {{ end }}
+                                        <div class="col-md-{{ .Scratch.Get "colwidth" }}">
+                                            <div id="reviews" class="p-4 bg-light-grey">
+                                                <h3 class="mb-4">Press:</h3>
+                                                <ol class="tracklisting"></ol>
+                                                    {{ range .Params.reviews }}
+                                                        <li><a href="{{ .url }}" target="_blank">{{ .text }}</a></li>
+                                                    {{ end }}
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    {{ end }}
+                                    {{ if .Params.band_members }}
+                                        {{ if .Params.reviews }}
+                                            {{ .Scratch.Set "colwidth" "4" }}
+                                        {{ end }}
+                                        <div class="col-md-{{ .Scratch.Get "colwidth" }}">
+                                            <div id="bandmembers" class="p-4 bg-pale">
+                                                <h3 class="mb-4">Band Members Further Info:</h3>
+                                                <ol class="tracklisting mb-4"></ol>
+                                                    {{ range .Params.band_members }}
+                                                        {{ if .url }}
+                                                            <li><a href="{{ .url }}" target="_blank">{{ .name }}</a></li>
+                                                        {{ else }}
+                                                            <li>{{ .name }}</li>
+                                                        {{ end }}
+                                                    {{ end }}
+                                                </ol>
+                                            </div>
+                                        </div>
+                                    {{ end }}
+                                </div>
+                            </div>
+                            {{ if .Params.music }}
+                                {{ partial "embedded-music.html" (dict "music" .Params.music "musicTop" false "title" "Listen:") }}
+                            {{ end }}
+                            {{ if .Params.watch }}
+                                {{ partial "embedded-video.html" (dict "watch" .Params.watch "musicTop" false "title" "Watch:") }}
+                            {{ end }}
+                            {{ if .Params.album_notes }}
+                            <div id="albumNotes" class="mt-4 mb-4 bg-white">
+                                <h3 class="mb-4">Album Notes:</h3>
+                                {{ .Params.album_notes | markdownify }}
+                            </div>
+                            {{ end }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12 p-4 text-center">
+                    <a class="btn" href="{{ .Parent.Permalink }}">View All Albums</a>
+                </div>
+            </div>
+        </article>
+    </div>
+</section>
+
+{{ end }}

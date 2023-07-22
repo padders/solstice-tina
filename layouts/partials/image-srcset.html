@@ -1,0 +1,40 @@
+{{ $src := ($.Main.GetPage "/uploads").Resources.GetMatch (strings.TrimPrefix "/uploads/" .src ) }}
+{{ if eq (len .sizes) 4 }}
+    {{ $tinyw := (print (index .sizes 0) "x q85") }}
+    {{ $smallw := (print (index .sizes 1) "x q85") }}
+    {{ $mediumw := (print (index .sizes 2) "x q85") }}
+    {{ $largew := (print (index .sizes 3) "x q85") }}
+
+    {{ $imageScratch := newScratch }}
+
+    {{ $imageScratch.Set "tiny" ($src.Resize $tinyw) }}
+    {{ $imageScratch.Set "small" ($src.Resize $smallw) }}
+    {{ $imageScratch.Set "medium" ($src.Resize $mediumw) }}
+    {{ $imageScratch.Set "large" ($src.Resize $largew) }}
+
+    {{ $tiny := $imageScratch.Get "tiny" }}
+    {{ $small := $imageScratch.Get "small" }}
+    {{ $medium := $imageScratch.Get "medium" }}
+    {{ $large := $imageScratch.Get "large" }}
+
+    <img class="lozad {{ .class }}" 
+    sizes="(max-width: 767px) {{(index .sizes 0)}}px,
+    (max-width: 991px) {{(index .sizes 1)}}px,
+    (max-width: 1199px) {{(index .sizes 2)}}px,
+    {{(index .sizes 3)}}px"
+   
+ 
+
+    data-srcset="{{ if ge $src.Width "{{(index .sizes 0)}}" }}
+        {{ $tiny.RelPermalink }} {{(index .sizes 0)}}w,
+    {{ end }}
+    {{ if ge $src.Width "{{(index .sizes 1)}}" }}
+        {{ $small.RelPermalink }} {{(index .sizes 1)}}w,
+    {{ end }}
+    {{ if ge $src.Width "{{(index .sizes 2)}}" }}
+        {{ $medium.RelPermalink }} {{(index .sizes 2)}}w,
+    {{ end }}
+    {{ if ge $src.Width "{{(index .sizes 3)}}" }}
+        {{ $large.RelPermalink }} {{(index .sizes 3)}}w
+    {{ end }}" data-orig-width="{{$src.Width}}" data-orig-height="{{$src.Height}}" data-ident="{{.ident}}" data-src="{{ $medium.RelPermalink }}" alt="{{ .alt }}"{{ if eq .fancybox "true" }} data-fancybox="gallery"{{ end }}{{ if eq .fitcover "true" }} width="100%" height="100%"{{ end }}{{ if eq .partner "true" }} width="390" height="348"{{ end }}/>
+{{ end }}

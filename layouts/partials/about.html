@@ -1,0 +1,41 @@
+{{"<!-- Start About Section -->" | safeHTML}}
+<section class="bg-dark-brown about section" id="about">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                {{"<!-- section title -->" | safeHTML}}
+                <div class="title wow fadeIn" data-wow-duration="1500ms">
+                    <h2>{{ .Params.about_heading}}  </h2>
+                    <div class="text-center"></div>
+                        <div class="border"></div>
+                        <p>{{ .Params.about_content  | markdownify}}</p>
+                    </div>
+                </div>
+                {{"<!-- /section title -->" | safeHTML}}
+            </div>
+            <div class="row-eq-height">
+                {{ $counter := 500 }}
+                {{ range .Params.about_section }}
+                    {{"<!-- About item -->" | safeHTML}}
+                    <div class="col-md-4 text-center wow fadeInUp" data-wow-duration="{{ $counter }}ms">
+                        <div class="block">
+                            <div class="icon-box">
+                                    {{with .icon_id}}<img class="svg-image" src="{{ . }}"/>{{ end }}
+                            </div>
+                            {{"<!-- Express About Yourself -->" | safeHTML}}
+                            <div class="content text-center">
+                                {{ with .section_title }}<h3 class="ddd">{{ . }}</h3>{{ end }}
+                                {{ with .section_content | markdownify}}  <div>{{ . }}</div>{{ end }}
+                            </div>
+                        </div>
+                        <div class="content text-center bottom">
+                            <a href="{{ .section_url }}" class="btn btn-light"> Learn more </a>
+                        </div>
+                    </div>
+                    {{ $counter = add $counter 300 }}
+                {{ end }}
+            </div>
+        </div>
+    </div>
+</section>
+{{"<!-- /about -->" | safeHTML}}

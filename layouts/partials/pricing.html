@@ -1,0 +1,44 @@
+
+{{"<!-- Start Pricing section -->" | safeHTML}}
+<section id="pricing" class="pricing section">
+    <div class="container">
+        <div class="row">
+
+            {{"<!-- section title -->" | safeHTML}}
+            <div class="title text-center wow fadeInDown" data-wow-duration="500ms">
+                <h2>{{ with .Params.heading }} {{ . }} {{ end }}<span class="color"> {{ with .Params.heading_span }} {{ . }} {{ end }}</span></h2>
+                <div class="border"></div>
+            </div>
+            {{"<!-- /section title -->" | safeHTML}}
+
+            {{ range .Params.pricing_table }}
+            {{"<!-- single pricing table -->" | safeHTML}}
+            <div class="col-md-3 col-sm-6 col-xs-12 text-center wow fadeInUp" data-wow-duration="200ms">
+                <div class="price-item">
+
+                    {{"<!-- plan name & value -->" | safeHTML}}
+                    <div class="price-title">
+                        <h3>{{ .title }}</h3>
+                        <p><strong class="value">{{ .price }}</strong>/ {{ .time }}</p>
+                    </div>
+
+                    {{"<!-- plan description -->" | safeHTML}}
+                    <ul>
+                        {{ with .plan}} 
+                            {{ range . }}
+                            <li>{{ .plan_details }}</li>
+                            {{ end }}
+                        {{ end }}
+                    </ul>
+
+                    {{"<!-- signup button -->" | safeHTML}}
+                    <a class="btn btn-transparent" href="{{ .btn_url | absURL}}">{{ .btn_text }}</a>
+
+                </div>
+            </div>
+            {{"<!-- end single pricing table -->" | safeHTML}}
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{"<!-- /pricing -->" | safeHTML}}

@@ -1,0 +1,43 @@
+---
+label: Gigs
+hide_body: true
+fields:
+- name: gig_location
+  type: text
+  config:
+    required: true
+  label: Gig Location
+  description: The location of the gig
+- name: gig_band
+  type: text
+  config:
+    required: true
+  label: Band name
+  description: The name of the band (used by the meta data for search engines)
+  default: Solstice
+- name: gig_url
+  type: text
+  config:
+    required: true
+  label: Gig link
+  description: The link to the Gig page (for tickets sales / more info)
+- name: gig_date
+  type: datetime
+  label: Gig Date
+  description: The date of the gig
+  hidden: false
+  config:
+    date_format: DD/MM/YYYY
+    time_format: h:mm A ZZ
+    display_utc: false
+    required: true
+    export_format: YYYY-MM-DD h:mm A
+- name: gig_cost
+  type: number
+  label: Cost
+  description: The cost in GBP
+  hidden: false
+  config:
+    min: 0
+    step: 0.01
+  default: 0

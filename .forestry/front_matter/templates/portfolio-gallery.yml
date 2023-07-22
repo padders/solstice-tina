@@ -1,0 +1,71 @@
+---
+label: Portfolio
+hide_body: false
+fields:
+- name: enable
+  label: Enable
+  type: boolean
+  hidden: false
+  default: ''
+- name: heading
+  label: Heading
+  type: text
+  hidden: false
+  default: ''
+- name: headingSpan
+  label: Headingspan
+  type: text
+  hidden: false
+  default: ''
+- name: filterList
+  label: Filterlist
+  type: field_group_list
+  fields:
+  - name: filterType
+    label: Filtertype
+    type: text
+    hidden: false
+    default: ''
+  - name: filterTitle
+    label: Filtertitle
+    type: text
+    hidden: false
+    default: ''
+  hidden: false
+  default: ''
+- name: portfolioItem
+  label: Portfolioitem
+  type: field_group_list
+  fields:
+  - name: types
+    label: Types
+    type: text
+    hidden: false
+    default: ''
+  - name: image
+    label: Image
+    type: file
+    hidden: false
+    default: ''
+  - name: icon
+    label: Icon
+    type: text
+    hidden: false
+    default: ''
+  - name: URL
+    label: Url
+    type: text
+    hidden: false
+    default: ''
+  - name: title
+    label: Title
+    type: text
+    hidden: false
+    default: ''
+  - name: description
+    label: Description
+    type: text
+    hidden: false
+    default: ''
+  hidden: false
+  default: ''

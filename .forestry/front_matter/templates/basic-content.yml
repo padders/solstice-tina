@@ -1,0 +1,49 @@
+---
+label: Basic Title and Content Section
+hide_body: false
+fields:
+- type: text
+  label: Title
+  name: title
+- name: content
+  label: Content
+  type: textarea
+  hidden: false
+  config:
+    wysiwyg: true
+    schema:
+      format: markdown
+  default: ''
+- name: add_image
+  type: boolean
+  label: Add Image?
+  description: Used to add an image that sits inside the text but is styled nicely
+- name: floating_image
+  type: file
+  config:
+    maxSize: 2
+  label: floating image
+  showOnly:
+    field: add_image
+    value: true
+- name: image_side
+  type: boolean
+  label: Image Side
+  description: Set the image to sit on the left or right.
+  showOnly:
+    field: add_image
+    value: true
+- name: remove_padding_top
+  type: boolean
+  label: remove padding top?
+  description: used to remove the padding to allow this section to butt up to another
+    section
+- name: remove_padding_bottom
+  type: boolean
+  label: remove padding bottom?
+  description: Used to remove the padding at the bottom of the section to allow it
+    to butt up to the section below
+- name: large_paragraph_text
+  type: boolean
+  label: Large Paragraph Text?
+  description: Add large paragraph text?

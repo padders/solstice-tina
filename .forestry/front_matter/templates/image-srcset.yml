@@ -1,0 +1,14 @@
+---
+label: Image Sourceset
+hide_body: false
+fields:
+- type: file
+  label: Gallery Image
+  description: Recommended Resolution 1900 × 1000
+  name: image_file
+  default: ''
+- type: text
+  name: image_description
+  label: Image Description
+  description: Image Description and alt text
+  default: ''

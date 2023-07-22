@@ -1,0 +1,223 @@
+
+{{ define "main" }}
+
+{{ partial "header.html" . }}
+        
+{{ partial "preloader.html" . }}
+
+{{ partial "navigation.html" . }}
+
+{{ range .Params.page_section }}
+
+{{ if eq "hero-partial" .template }}
+  
+{{ partial "hero-area.html" (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "about-section-1" .template }}
+  
+{{ partial "about.html" (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "albums" .template }}
+  
+{{ partial "album.html" (dict "Main" $ "Partial" . )  }}
+
+{{ end }}
+
+{{ if eq "upcoming_gigs" .template }}
+  
+{{ partial "upcoming-gigs.html" (dict "Main" $ "Partial" . )  }}
+
+{{ end }}
+
+{{ if eq "old_gigs" .template }}
+  
+{{ partial "previous-gigs.html" (dict "Main" $ "Partial" . )  }}
+
+{{ end }}
+
+{{ if eq "about-section-2" .template }}
+  
+{{ partial "about-2.html" (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "cta-section" .template }}
+  
+{{ partial "cta.html" (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "cta-section-simple" .template }}
+  
+{{ partial "cta-simple.html" (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "partner-links" .template }}
+  
+{{ partial "partner-links.html" (dict "Main" $ "Params" .)  }}
+
+{{ end }}
+
+
+{{ if eq "service" .template }}
+  
+{{ partial "service.html" (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "skills-section" .template }}
+  
+{{ partial "skill.html" (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "portfolio" .template }}
+
+{{$important := $.Site }}
+
+{{$important2 := $.Site.Taxonomies }}
+
+{{ partial "portfolio-rm.html"  (dict  "main" $important  "main2" $important2  )  }}
+
+{{ end }}
+
+{{ if eq "gallery" .template }}
+  
+{{ partial "gallery.html" (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "gallery-masonry" .template }}
+
+{{ $important := $.Site }}
+
+{{ $important2 := . }}
+
+{{ $important3 := $.Site.Taxonomies }}
+  
+{{ partial "gallery-masonry.html" (dict "Main" $important "Params" $important2 "taxon" $important3 )  }}
+
+{{ end }}
+
+{{ if eq "video-gallery-masonry" .template }}
+
+{{ $important := $.Site }}
+
+{{ $important2 := . }}
+
+{{ $important3 := $.Site.Taxonomies }}
+  
+{{ partial "video-gallery-masonry.html" (dict "Main" $important "Params" $important2 "taxon" $important3 )  }}
+
+{{ end }}
+
+{{ if eq "formatted-links" .template }}
+  
+{{ partial "formatted-links.html" (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "counter-rm" .template }}
+
+{{ partial "counter-rm.html"  (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "team" .template }}
+
+{{ partial "team.html"  (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "pricing" .template }}
+
+{{ partial "pricing.html"  (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "testimonial" .template }}
+
+{{ partial "testimonial.html"  (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "calendar" .template }}
+
+{{ partial "calendar.html"  (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "blog" .template }}
+
+{{$Posts := $.Site.Pages  }}
+
+{{ $important := $.Site }}
+
+{{ partial "blog-rm.html"  (dict "Params" . "posts" $Posts "Main" $important) }}
+
+{{ end }}
+
+{{ if eq "contact" .template }}
+
+{{ partial "contact.html"  (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "contact-mailchimp" .template }}
+
+{{ partial "contact-mailchimp.html"  (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "basic-content" .template }}
+
+{{ partial "basic-content.html"  (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "faq" .template }}
+  
+{{ partial "faq.html" (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "workshop" .template }}
+  
+{{ partial "workshop.html" (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "full-width-image" .template }}
+  
+{{ partial "full-width-image.html" (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "specialities-section" .template }}
+  
+{{ partial "specialities.html" (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "external_ad" .template }}
+  
+{{ partial "external_ad.html" (dict "Params" .)  }}
+
+{{ end }}
+
+{{ if eq "upcoming-events" .template }}
+
+{{ $important := $.Site }}
+  
+{{ partial "upcoming-events.html" (dict "Params" . "Main" $important)  }}
+
+{{ end }}
+
+{{ end }}
+
+{{ end }}

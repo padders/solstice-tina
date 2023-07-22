@@ -1,0 +1,41 @@
+---
+label: Hero Partial
+hide_body: false
+fields:
+- type: file
+  label: Hero Image
+  description: Recommended Resolution 1900 × 1000
+  name: banner_image
+  default: "/images/slider/hero-area.jpg"
+- type: text
+  name: hero_title
+  label: Hero Title
+  description: The title of the hero section
+  default: Experience The New Reality
+- type: textarea
+  name: hero_text_content
+  label: Hero Text Content
+  description: Paragraph of information for hero section
+  config:
+    wysiwyg: true
+    schema:
+      format: markdown
+  default: Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugit, excepturi.
+    At recusandae sit perferendis autem,iste tempora nostrum numquam sapiente!
+- type: boolean
+  label: Link Button
+  name: link_btn
+- type: text
+  name: hero_button_text
+  label: Hero Button text
+  description: Text for Button in hero setion
+  default: Explore Us
+- type: text
+  name: hero_button_url
+  label: Hero Button URL
+  description: Hero Button URL
+  default: "#"
+- name: thin_hero
+  type: boolean
+  label: Thin Hero?
+  description: Turn this on to make the hero area thinner

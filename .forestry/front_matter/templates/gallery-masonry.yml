@@ -1,0 +1,46 @@
+---
+label: Gallery - Aligned with descriptions
+hide_body: true
+fields:
+- type: number
+  name: display_limit
+  label: Display Limit
+  description: Set the number of images to show in the gallery - a 'show all' button
+    will be added if there are more
+  default: 16
+  hidden: false
+  config:
+    min: 4
+    step: 1
+- type: tag_list
+  name: tags
+  label: tags
+  description: Provide tags for the gallery - These will be listed at the top as filters
+    - replace spaces with an _
+- type: field_group_list
+  label: Gallery Image
+  name: image_section
+  description: Single Image with description
+  fields:
+  - type: file
+    label: Gallery Image
+    description: Recommended Resolution 1900 × 1000
+    name: image_file
+    default: ''
+  - type: text
+    name: image_description
+    label: Image Description
+    description: Image Description - outputted under the image on screen
+    default: ''
+  - type: text
+    name: alt_text
+    label: Image Alt Text
+    description: Image Alt Tag - Not required - the Image description will be used
+      as the alt tag if this isn't filled in. If you need a different alt tag the
+      add this
+    default: ''
+  - type: tag_list
+    name: tags
+    label: tags
+    description: Provide tags for this image - must be a tag that is also listed in
+      the gallery - replace spaces with an _

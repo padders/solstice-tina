@@ -1,0 +1,38 @@
+---
+label: Services Page
+hide_body: false
+fields:
+- type: text
+  label: Title
+  name: title
+- type: textarea
+  name: description
+  label: Description
+- type: text
+  name: external_url
+  label: External Url
+  description: Further information link
+- type: datetime
+  name: date
+  label: Date
+  default: '2019-01-06T00:00:00.000+00:00'
+- type: file
+  name: main_image
+  label: Main Image
+  description: 'Recommended size : 1900px x 1000px'
+- type: textarea
+  name: project_hero_short_description
+  label: Project Hero Short Description
+- type: file
+  name: list_image
+  label: List Image
+  description: 'Recommended size: 750px x 490px'
+- type: tag_list
+  name: categories
+  label: Categories
+  default:
+  - Development
+- type: image_gallery
+  name: gallery
+  label: Gallery
+  description: 'Recommended size: 500px wide'

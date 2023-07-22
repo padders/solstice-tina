@@ -1,0 +1,61 @@
+{{"<!-- Portfolio Section -->" | safeHTML}}
+<section class="portfolio section" id="portfolio">
+    <div class="container">
+        <div class="row ">
+            <div class="col-lg-12">
+                {{"<!-- section title -->" | safeHTML}}
+                <div class="title text-center">
+                    <h2>Our Portfolio</h2>
+                    <div class="border"></div>
+                </div>
+                {{"<!-- /section title -->" | safeHTML}}
+            </div>
+        </div>
+       <!-- <div class="row">
+            <div class="col-md-12">
+                <div class="portfolio-filter">
+                    <button type="button" data-filter="all">All</button>
+                   
+                    {{ range $key, $value := .main2}}
+                        {{ range $key2, $value2 := $value }}
+                            
+                            <button type="button" data-filter=".{{$key2}}">{{$key2}}</button>
+                        {{ end }}
+                    {{ end }}
+                   
+                    
+             
+                </div>
+            </div>
+        </div>-->
+      
+
+        
+        <div class="row portfolio-items-wrapper">
+            {{"<!-- portfolio item -->" | safeHTML}}
+            {{ range first 9 ((where .main.Pages "Section" "portfolio") sort ".Params.weight"  "desc") }}
+          
+           
+        {{if .Params.title }}
+       
+            <div class="mix col-md-4{{ range .Params.categories }} {{lower .}}{{end}}">
+                <div class="portfolio-block">
+                    <img class="img-responsive" src="{{ .Params.list_image | absURL}}" alt="work-image">
+                    <div class="caption">
+
+                        <a class="search-icon" href="{{ .URL | absURL }}"
+                           >
+                            <i class="tf-ion-android-search"></i>
+                        </a>
+                        <h4><a href="{{ .URL | absURL }}">{{ .Params.title }}</a></h4>
+                        <p>{{ .Content }}</p>
+                    </div>
+                </div>
+            </div>
+            {{ end }}
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{"<!-- /Portfolio -->" | safeHTML}}
+

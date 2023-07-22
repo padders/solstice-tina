@@ -1,0 +1,15 @@
+
+<section class="hero-area {{ if .Params.thin_hero }}hero-thin{{ end}}" style='background-image: url("{{ .Params.banner_image | absURL }}");'>
+    <div class="block col-md-8 py-4">
+       {{with .Params.hero_title}} <h1 class="h2-text mb-8">{{ . }}</h1>{{ end }}
+       {{with .Params.hero_text_content | markdownify}} <div>{{ . }}</div> {{ end }}
+       {{ if .Params.link_btn}}
+        <a data-scroll href="{{ .Params.hero_button_url}}" class="btn">{{ .Params.hero_button_text}}</a>
+        {{ end }}
+    </div>
+</section>
+
+
+
+
+

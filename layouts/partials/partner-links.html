@@ -1,0 +1,13 @@
+<section id="{{ .Params.section_id  }}" class="bg-white">
+    <div class="container list-inline row-eq-height justify-center pt-8 pb-8" >
+        {{ range .Params.partners}}
+        <div class="h-full">
+            <a href="{{ .url }}" target="_blank">                                
+                <picture>
+                    {{ partial "image-srcset.html" (dict "src" .image "alt" "partner links" "class" "mh-12 partner-img m-0 px-4 mb-4-small px-0-small" "sizes" (slice 390 390 390 390) "partner" "true" "ident" "" "Main" $.Main) }}
+                </picture>
+            </a>
+        </div>
+        {{ end }}
+    </div>
+</section>

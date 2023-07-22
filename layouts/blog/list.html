@@ -1,0 +1,80 @@
+{{ define "main" }}
+
+{{ partial "header.html" . }}
+
+{{ partial "navigation.html" . }}
+
+{{"<!-- Start Blog Section -->" | safeHTML}}
+<section id="blog" class="section bg-white">
+    <div class="container">
+        <div class="row">
+            {{"<!-- section title -->" | safeHTML}}
+            <div class="title text-center wow fadeIn">
+                <h2>Latest Posts</h2>
+            </div>
+            {{"<!-- /section title -->" | safeHTML}}
+
+            <div class="clearfix">
+                <div class="row-eq-height">
+                    {{ $counter := 500 }}
+                    {{ range .Data.Pages }}
+                        {{"<!-- single blog post -->" | safeHTML}}
+                        <article class="col-md-4 col-sm-6 col-xs-12 clearfix wow fadeIn" data-wow-duration="{{ $counter }}ms">
+                            <script type="application/ld+json">
+                                {
+                                    "@context": "https://schema.org",
+                                    "@type": "NewsArticle",
+                                    "mainEntityOfPage": {
+                                    "@type": "WebPage",
+                                    "@id": "{{ .Permalink }}"
+                                    },
+                                    "headline": "{{ .Title }}e",
+                                    "image": [
+                                    "{{ .Params.image | absURL }}"
+                                    ],
+                                    "datePublished": "{{ dateFormat "Monday, Jan 2, 2006" .Date }}",
+                                    "dateModified": "{{ dateFormat "Monday, Jan 2, 2006" .Date }}",
+                                    "author": {
+                                    "@type": "Person",
+                                    "name": "{{ .Params.author }}"
+                                    },
+                                    "publisher": {
+                                    "@type": "Organization",
+                                    "name": "Steamfort ltd",
+                                    "logo": {
+                                        "@type": "ImageObject",
+                                        "url": "{{ .Site.Params.logo | absURL }}"
+                                    }
+                                    },
+                                    "description": "{{ .Summary }}"
+                                }
+                            </script>
+                            
+                            <div class="post-block">
+                                <a href="{{ .Permalink }}">
+                                    <div class="media-wrapper-large">
+                                        {{ if .Params.alt_text }}
+                                            {{ partial "image-srcset.html" (dict "src" .Params.image "alt" .Params.alt_text "class" "blogCoverImage" "sizes" (slice 685 345 293 360 ) "fitcover" "true" "ident" "" "Main" $.Site) }}
+                                        {{ else }}
+                                            {{ partial "image-srcset.html" (dict "src" .Params.image "alt" .Title "class" "blogCoverImage" "sizes" (slice 685 345 293 360) "fitcover" "true" "ident" "" "Main" $.Site) }}
+                                        {{ end }}
+                                    </div>
+
+                                    <div class="content bg-dark">
+                                        <h3>{{ .Title }}</h3>
+                                        <p>{{ .Summary }}</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </article>
+                        {{"<!-- /single blog post -->" | safeHTML}}
+                        {{ $counter = add $counter 300 }}
+                    {{ end }}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{{"<!-- /blog -->" | safeHTML}}
+
+{{ end }}

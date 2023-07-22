@@ -1,0 +1,77 @@
+{{"<!-- Start Previous Gigs -->" | safeHTML}}
+{{ $displaySection := 0 }}
+{{ $gigs := (where site.RegularPages "Section" "gigs") }}
+{{ $gigCount := 0 }}
+{{ $band_filter := .Partial.band_filter }}
+{{ range $gigs }}
+    {{ if (time .Params.gig_date).Before now }}
+        {{ if or (eq $band_filter "") (eq $band_filter .Params.gig_band) }}
+            {{ $gigCount = add $gigCount 1 }}
+            {{ $displaySection = 1 }}
+        {{ end }}
+    {{ end }}
+{{ end }}
+
+{{ if (eq $displaySection 1) }}
+    <section class="gig-section bg-white">
+        <div class="container">
+            <div class="row ">
+                <div class="col-lg-12">
+                    {{"<!-- section title -->" | safeHTML}}
+                    <div class="title pb-2 wow fadeIn text-center" data-wow-duration="1500ms">
+                        <h2>{{ .Partial.section_title }}</h2>
+                    </div>
+                    {{"<!-- /section title -->" | safeHTML}}
+                </div>
+            </div>
+            {{ range sort $gigs ".Params.gig_date" "desc" }}
+                {{ if (time .Params.gig_date).Before now }}
+                    {{ if or (eq $band_filter "") (eq $band_filter .Params.gig_band) }}
+                        <div class="nopadding">
+                            <div class="col-md-10 col-md-offset-1 gig-surround nopadding bg-light">
+                                <script type="application/ld+json">
+                                    {
+                                        "@context": "https://schema.org",
+                                        "@type": "Event",
+                                        "name": "{{ .Params.gig_band }} {{ .Params.gig_location }}",
+                                        "startDate": "{{ dateFormat "Jan 2, 2006, 8:00pm" .Params.gig_date }}",
+                                        "location": {
+                                            "@type": "Place",
+                                            "name": "{{ .Params.gig_location }}",
+                                            "address": "{{ .Params.gig_location }}"
+                                        },
+                                        "description": "{{ .Params.gig_title }}",
+                                        {{ if ne .Params.gig_cost 0 }}"offers": {
+                                            "@type": "Offer",
+                                            "url": "{{ .Params.gig_url }}",
+                                            "price": "{{ .Params.gig_cost }}",
+                                            "priceCurrency": "GBP"
+                                        },{{ end }}
+                                        "performer": {
+                                            "@type": "PerformingGroup",
+                                            "name": "{{ .Params.gig_band }}"
+                                        }
+                                    }
+                                </script>
+                                <div class="row">
+                                    <div class="col-sm-12 list-inline-between row-eq-height">
+                                        <div class="gig-listing flex-align-center"><p class="gig-date m-0">{{ dateFormat "Jan 2, 2006" .Params.gig_date }}</p></div>
+                                        <div class="gig-listing flex-align-center"><p class="bold m-0">{{ .Params.gig_band }}</p></div>
+                                        <div class="gig-listing flex-align-center"><p class="m-0">{{ .Params.gig_location }}</p></div>
+                                        {{ if ne .Params.gig_cost 0 }}<div class="gig-listing flex-align-center"><p class="gig-cost text-center m-0">&#163;{{ .Params.gig_cost }}</p></div>{{ end }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {{ end }}
+                {{ end }}
+            {{ end }}
+            {{ if gt $gigCount .Partial.display_limit }}
+            <div class="col-md-12 all-post para-large text-center mt-4">
+                <a class="btn btn-light" href="{{ .Partial.all_gigs_url }}">View all live dates</a>
+            </div>
+            {{ end }}
+        </div>
+    </section>
+{{ end }}
+{{"<!-- Start Previous Events -->" | safeHTML}}

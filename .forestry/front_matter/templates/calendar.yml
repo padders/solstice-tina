@@ -1,0 +1,29 @@
+---
+label: Calendar
+hide_body: false
+fields:
+- type: text
+  name: calendar_heading
+  label: Calendar Section Heading
+  description: Calendar Section Heading
+  default: Our Availability
+- type: text
+  name: calendar_code
+  label: Google Calendar Code
+  description: Code for Google Calendar
+  default: AIzaSyCaOFuxuDN22YWJDzLRjEsvmdZikjXE68w
+- type: text
+  name: calendar_id
+  label: Google Calendar ID
+  description: ID for Google Calendar
+  default: developer%rustymonkey.com@gtempaccount.com
+- type: text
+  name: form_heading
+  label: Form Section Heading
+  description: Form Section Heading
+  default: Fill in this form to book a workshop
+- name: terms_and_conditions_link
+  label: Terms and Conditions page
+  type: text
+  hidden: false
+  default: ''
