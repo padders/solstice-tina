@@ -53,9 +53,17 @@ export default defineConfig({
   },
   media: {
     tina: {
-      mediaRoot: "",
-      publicFolder: "static",
+      mediaRoot: "uploads",
+      publicFolder: "content",
     },
+  },
+  search: {
+    tina: {
+      indexerToken: process.env.searchtoken,
+      stopwordLanguages: ['eng']
+    },
+    indexBatchSize: 100,
+    maxSearchIndexFieldLength: 100
   },
   schema: {
     collections: [
